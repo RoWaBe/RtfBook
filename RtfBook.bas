@@ -13,41 +13,6 @@
 'Developer:   Roland Walter 2018
 'Last change: 10.08.2018, 17:30h
 '************************************************************************************************************************
-'ToDo:
-'- Prüfen ob Strg+C und "Kopieren" via Popup-Menü geht. Zwischenablage geleert? noch Reste in anderen Formaten drin?
-'- Mal prüfen, ob bei leerem letzten Dateinamen, wechselndem Dateinamen usw. auch das letzte Kapitel zu Datei Nummer 1 zurückgesetzt wird
-'- Grafik in Zwischenablage kopieren geht noch nicht
-'- Anstreichen/Kommentieren: iZipArchiveIndex,dwStartPos,dwEndPos,idColor,Text,<CR+RT>. Oder: Unkomprimierte Zip erzeugen mit entsprechenden Textdateien.
-'- Letzte 4 Bücher merken, jeweils mit Textposition (in Hilfe erwähnen)
-'************************************************************************************************************************
-'Ideen:
-'- Dateisuffix *.rtfb ?!
-'- zweiter Dateisuffix, der für für Einzeltexte besser merkbar ist, wie z.B. *.rtfz
-'- Laden sehr großer PNGs: Das Bild zuckt beim Aufbau zweifach, statt nur ein einziges Redraw zu machen. Möglicherweise nur bei gesetztem Zoom
-'- TOC: in #index.txt - hinterm Dateinamen DWORD mit der Zeichenposition innerhalb dieser Datei ermöglichen.
-'  Als Trenner <TAB>-Character? - Klaut am wenigsten Möglichkeiten. Oder vorm Dateinamen, z:B. zweiter Bindestrich hinter der Level-Angabe
-'- Idee: Linkdateien *.ref, die einfach nur einen (anderen) Dateinamen einer RTF-Datei oder eines Bilds enthalten + ggf. ein DWORD mit der Zeichenposition innerhalb dieser Datei
-'- Außer #index.txt ggf auch #Tags.txt. Es erscheint weiterer Tab, Aufbau wie #index.txt
-'  ---> Außerdem 3. Tab möglich mit Lesezeichen in externer Datei, gleicher Dateiname wie Buch, aber Suffix .bookmarks angehängt
-'- msftedit-Version prüfen und ggf pngblip/jpegblip statt eigener Dekomression via GDI+
-'- Umbenenn-Tool: Dateiliste, keine Anzeige der Ordnungszahl, aber korrekte Reihenfolge. Man draggt eine Datei an die gewünschte Stelle und "OK"
-'  setzt korrekten Ordnungszahlen. Siehe Commctrl "Drag List Boxes", MakeDragList, DRAGLISTINFO, DL_BEGINDRAG
-'- Idee für Links: Eigener Link-Editor fügt mit eigenem Recorder erzeugte platzsparende EMF (wie die bei Wikipdia) samt Hyperlink-Objekt ein.
-'- Textdateien für Metadaten zu jeder RTF/-Bilddatei , Aufbau wie meta.txt, insb. für Stichwortsuche uam.
-'  Damit wäre das eBook-Format wunderbar als Kartei für Ideensammlungen, Autoren,Recherchen geeignet
-'- Anstreichen und Anmerkungen ermöglichen: Hintergrundfarbe und Popup-Texteingabefenster, wenn Farbe. Speichern als Textdatei, Dateinummer, Farbe,Anfang,Ende,Text
-'      Ggf. Anmerkungen nach Farbe und Text separat suchbar machen.
-'- Zoom auch für TOC list
-'- save as html (one file, inline graphics)? ePub?
-'************************************************************************************************************************
-'Ideen für den Outliner:
-'- Modus "Textdatei". Erzeugt ebenfalls RTF, aber: Plaintext, nur einmalig Setzen fon Font-Eigenschaften und Zeichensatz. Rausstremen als Text, Fonttabelle
-'  erzeugen und CRRT durch \par ersetzen. Ergibt angenehm aussehnde, aber sehr kleine Dateien, ohne dass man das Prinzip "nur RTF und Bilder" aufgeben muss.
-'  Ist nicht wesentlich ineffizienter als PlainText, aber eindeutig bei den Zichen
-'************************************************************************************************************************
-'Good code examples:
-'http://www.garybeene.com/code/#Controls%20-%20RichEdit
-'************************************************************************************************************************
 #define UNICODE
 
 #include Once "windows.bi"
@@ -628,11 +593,11 @@ Function MainWndProc(ByVal hWndMainWindow As HWND,ByVal uMsg As UINT,ByVal wPara
       Select Case UserSettings.wLanguageID
       Case &H07
         swBuffer="Die Schnellsuche arbeitet ohne Eingabefenster, und zwar entweder im Inhaltsverzeichnis oder innerhalb des aktuellen Texts,"+_
-                 " abhängig davon, welches Fenster gerade aktiv ist. Die Schnellsuche startet, sobald man Zeichen in die Tastatur eingibt. "+_
-                 "Längere Suchbegriffe bildet man durch Zeitabstände kleiner als einer Sekunde zwischen den Tastendrücken. Mit "+WChr(&H0022)+_
+                 " abhÃ¤ngig davon, welches Fenster gerade aktiv ist. Die Schnellsuche startet, sobald man Zeichen in die Tastatur eingibt. "+_
+                 "LÃ¤ngere Suchbegriffe bildet man durch ZeitabstÃ¤nde kleiner als einer Sekunde zwischen den TastendrÃ¼cken. Mit "+WChr(&H0022)+_
                  "Schnellsuche fortsetzen"+WChr(&H0022)+" (Kurztaste F3) wird nach dem letzten Suchbegriff gesucht."+WChr(13)+_
                  "Beide Fenster arbeiten mit je einem eigenen Suchbegriff."+WChr(13)+_
-                 "Die Schnellsuche beachtet stets die Groß-/Kleinschreibung."
+                 "Die Schnellsuche beachtet stets die GroÃŸ-/Kleinschreibung."
         MessageBox(hWndMainWindow,swBuffer,"Hinweis zur Schnellsuche",MB_ICONINFORMATION)
       Case Else
         swBuffer="Quick-search works without an input window, either in the table of contents or within the current text, depending on which "+_
@@ -1013,7 +978,7 @@ Function OnDrawItems(ByVal hWnd As HWND,ByVal lpdis As DRAWITEMSTRUCT Ptr) As LR
       Select Case lpdis->itemID
       Case IDC_ZOOMSMALLER: swBuffer=wChr(&H25CB)+"Text &kleiner zoomen"+wChr(9)+"F10"
       Case IDC_ZOOMNORMAL:  swBuffer=wChr(&H25C9)+"Text &normal zoomen"+wChr(9)+"F11"
-      Case IDC_ZOOMBIGGER:  swBuffer=wChr(&H25CF)+"Text &größer zoomen"+wChr(9)+"F12"
+      Case IDC_ZOOMBIGGER:  swBuffer=wChr(&H25CF)+"Text &grÃ¶ÃŸer zoomen"+wChr(9)+"F12"
       Case IDC_CHAPTERDOWN: swBuffer=wChr(&H25BC)+"Kapitel &runter "+wChr(9)+"Strg+BildAb"
       Case IDC_CHAPTERUP:   swBuffer=wChr(&H25B2)+"Kapitel &hoch "+wChr(9)+"Strg+BildAuf"
       End Select
@@ -1179,7 +1144,7 @@ Function OpenBook(ByVal hWnd As HWND,ByVal sBookFile As String) As LRESULT
       swBuffer=UCase(swCurFileNameWide)
       If swBuffer=TXT_RBK_METAFILE Then
         Select Case UserSettings.wLanguageID                                      'User language ID (&H00=Neutral (english), &H07=German, &H03=Catalan and so on )
-        Case &H07 :  swzChapterTitle="01[Über...]"                                'German               very left: "01" means indention level 0, file icon 1
+        Case &H07 :  swzChapterTitle="01[Ãœber...]"                                'German               very left: "01" means indention level 0, file icon 1
         Case Else :  swzChapterTitle="01[About...]"                               'Neutral (english)    very left: "01" means indention level 0, file icon 1
         End Select
         j=SendMessage(hwndTOC,LB_ADDSTRING,0,Cast(LPARAM,@swzChapterTitle))       'Copy the chapter title derived from filename into the TOC listbox
@@ -1228,7 +1193,7 @@ Function OpenBook(ByVal hWnd As HWND,ByVal sBookFile As String) As LRESULT
         End If
         '
         If j<2 And (*Cast(UShort Ptr,@swCurFileNameWide)>&H002F And *Cast(UShort Ptr,@swCurFileNameWide)<&H003A) Then 'No title exists (continuation of last file ("j": Position of "-")
-          swzChapterTitle=Str(Val(swIndention)+1)+swFileType+"…"                  'Indent one more and show character "..." instead of a chapter name
+          swzChapterTitle=Str(Val(swIndention)+1)+swFileType+"Â…"                  'Indent one more and show character "..." instead of a chapter name
         Else
           swzChapterTitle=swIndention+swFileType+Mid(swCurFileNameWide,j,k-j+1)   'Indention plus filename without prefix and without suffix
         End If
@@ -1247,7 +1212,7 @@ Function OpenBook(ByVal hWnd As HWND,ByVal sBookFile As String) As LRESULT
   '
   If iRetVal=-1 Then
     Select Case UserSettings.wLanguageID                                       'User language ID (&H00=Neutral (english), &H07=German, &H03=Catalan and so on )
-    Case &H07 : MessageBox(hWnd,"Fehler beim Öffnen der Datei"+Chr(13)+sBookFile,swAppName,MB_ICONSTOP)                         '&H07: German
+    Case &H07 : MessageBox(hWnd,"Fehler beim Ã–ffnen der Datei"+Chr(13)+sBookFile,swAppName,MB_ICONSTOP)                         '&H07: German
     Case Else : MessageBox(hWnd,"Error opening file"+Chr(13)+sBookFile,swAppName,MB_ICONSTOP)                                   '&H00: Neutral (english)
     End Select
   ElseIf iRetVal=-2 Then
@@ -1306,7 +1271,7 @@ Function IndexFile_get_name(ByVal pCurZipArchive As Any Ptr,ByVal fInit As Integ
     '
     pIndexFileRawData=GlobalAlloc(GMEM_FIXED,ZipStat.size)
     zip_fread(pCurZipFile,pIndexFileRawData,ZipStat.size)
-    If *Cast(UByte Ptr,pIndexFileRawData)=&HEF And *Cast(UByte Ptr,pIndexFileRawData+1)=&HBB And *Cast(UByte Ptr,pIndexFileRawData+2)=&HBF Then   'UTF-8 ByteOrderMark "ï»¿"
+    If *Cast(UByte Ptr,pIndexFileRawData)=&HEF And *Cast(UByte Ptr,pIndexFileRawData+1)=&HBB And *Cast(UByte Ptr,pIndexFileRawData+2)=&HBF Then   'UTF-8 ByteOrderMark "Ã¯Â»Â¿"
       iBufferLen=MultiByteToWideChar(CP_UTF8,0,pIndexFileRawData+3,ZipStat.size-3,NULL,NULL)*2                                  'Get buffer size in bytes (!) for output buffer
       pusIndexFileData=GlobalAlloc(GMEM_FIXED,iBufferLen+1)
       iBufferLen=MultiByteToWideChar(CP_UTF8,0,pIndexFileRawData+3,ZipStat.size-3,pusIndexFileData,iBufferLen)*2                'Convert UTF-8 encoded text into 16-bit Unicode
@@ -1425,7 +1390,7 @@ Function LoadBookChapter(ByVal iCurChapter As Integer) As LRESULT
   If (pCurZipFile=NULL) Then
     szArchivePassword=""                                      'Erase possibly wrong password, so thet next time Password dialog appears again
     Select Case UserSettings.wLanguageID                       'User language ID (&H00=Neutral (english), &H07=German, &H03=Catalan and so on )
-    Case &H07 : swBuffer2="Konnte Kapitel nicht öffnen."      'German: Default language in resources
+    Case &H07 : swBuffer2="Konnte Kapitel nicht Ã¶ffnen."      'German: Default language in resources
     Case Else : swBuffer2="Could not open chapter."           'Neutral (english)
     End Select
     swBuffer=swBuffer2+Chr(13,10)+"("+Chr(34)+*Cast(ZString Ptr,zip_strerror(pCurZipArchive))+Chr(34)+")"
@@ -1756,12 +1721,12 @@ Function ExtractCurFile(ByVal hWndParent As HWND) As LRESULT
     Select Case iRetVal
     Case -1
       Select Case UserSettings.wLanguageID                                                  'User language ID (&H00=Neutral (english), &H07=German, &H03=Catalan and so on )
-      Case &H07 : swBuffer="Kein Buch geöffnet!"                                            'German: Default language in resources
+      Case &H07 : swBuffer="Kein Buch geÃ¶ffnet!"                                            'German: Default language in resources
       Case Else : swBuffer="No book open."                                                  'Neutral (english)
       End Select
     Case -2
       Select Case UserSettings.wLanguageID                                                  'User language ID (&H00=Neutral (english), &H07=German, &H03=Catalan and so on )
-      Case &H07 : swBuffer="Ist kein Kapitel ausgewählt?"                                   'German: Default language in resources
+      Case &H07 : swBuffer="Ist kein Kapitel ausgewÃ¤hlt?"                                   'German: Default language in resources
       Case Else : swBuffer="Is there no chapter selected?"                                  'Neutral (english)
       End Select
     Case -3
@@ -1771,7 +1736,7 @@ Function ExtractCurFile(ByVal hWndParent As HWND) As LRESULT
       End Select
     Case -4
       Select Case UserSettings.wLanguageID                                                   'User language ID (&H00=Neutral (english), &H07=German, &H03=Catalan and so on )
-      Case &H07 : swBuffer="Konnte Kapitel nicht öffnen."                                    'German: Default language in resources
+      Case &H07 : swBuffer="Konnte Kapitel nicht Ã¶ffnen."                                    'German: Default language in resources
       Case Else : swBuffer="Could not open chapter."                                         'Neutral (english)
       End Select
     Case -5
@@ -1811,8 +1776,8 @@ Function ExportDlgProc(ByVal hDlg As HWND,ByVal uMsg As UINT,ByVal wParam As WPA
     '
     Select Case UserSettings.wLanguageID               'User language ID (&H00=Neutral (english), &H07=German, &H03=Catalan and so on )
     Case &H07                                         'German: Default language in resources
-      SetDlgItemText(hDlg,IDCS_EXPRTHLP,"Es können mehrere Kapitel ausgewählt werden."+Chr(13,13)+"Maus mit Shift-Taste wählt eine Folge. Das ist auch mit einem "+_
-                                        "Ziehen der Maus möglich."+Chr(13,13)+"Mit Maus und Strg-Taste können beliebig einzelne Einträge gewählt oder abgewählt werden.")
+      SetDlgItemText(hDlg,IDCS_EXPRTHLP,"Es kÃ¶nnen mehrere Kapitel ausgewÃ¤hlt werden."+Chr(13,13)+"Maus mit Shift-Taste wÃ¤hlt eine Folge. Das ist auch mit einem "+_
+                                        "Ziehen der Maus mÃ¶glich."+Chr(13,13)+"Mit Maus und Strg-Taste kÃ¶nnen beliebig einzelne EintrÃ¤ge gewÃ¤hlt oder abgewÃ¤hlt werden.")
     Case Else                                         'Neutral (english)
       SetWindowText(hDlg,"Export as KeyNote file...")
       SetDlgItemText(hDlg,IDCS_FILENAME,"&File name:")
@@ -1920,7 +1885,7 @@ Function ExportDlgProc(ByVal hDlg As HWND,ByVal uMsg As UINT,ByVal wParam As WPA
 End Function
 '***************************************************************************************************************************************
 Function ExportKeyNote(ByVal hwndParent As HWND,ByVal hExportList As HWND,Byref szwFilename As Wstring) As LRESULT
-  'Exports all RTF and picture files selected in multiselection listbox control hExportList to the KeýNote file szwFilename.
+  'Exports all RTF and picture files selected in multiselection listbox control hExportList to the KeÃ½Note file szwFilename.
   'This listbox must be an exact copy of the TOC/ShadowTOC listbox pair in the man window.
   'Returns 0 if OK or an error value otherwise.
   'An example KeyNote file is at the bottom of this function.
@@ -2064,7 +2029,7 @@ Function ExportKeyNote(ByVal hwndParent As HWND,ByVal hExportList As HWND,Byref 
     ShowSystemErrorMessage(hwndParent,swBuffer)
   Case 3       '3: Open Chapter error (for example password wrong for encrypted chapters)
     Select Case UserSettings.wLanguageID                                                   'User language ID (&H00=Neutral (english), &H07=German, &H03=Catalan and so on )
-    Case &H07 : swBuffer="Konnte Kapitel nicht öffnen:"+Chr(13)+szBuffer2+Chr(13,13)      'German: Default language in resources
+    Case &H07 : swBuffer="Konnte Kapitel nicht Ã¶ffnen:"+Chr(13)+szBuffer2+Chr(13,13)      'German: Default language in resources
     Case Else : swBuffer="Could not open chapter:"+Chr(13)+szBuffer2+Chr(13,13)           'Neutral (english)
     End Select
     swBuffer2=swBuffer+Chr(13,10)+"("+Chr(34)+*Cast(ZString Ptr,zip_strerror(pCurZipArchive))+Chr(34)+")"
@@ -2109,7 +2074,7 @@ Function ExportKeyNote(ByVal hwndParent As HWND,ByVal hExportList As HWND,Byref 
   'LV=1
   'ND=Eintrag 5 auf Level 0
   '%:
-  '{\rtf1\ansi\ansicpg1252\deff0{\fonttbl{\f0\fnil\fcharset0 Arial;}}\viewkind4\uc1\pard\lang1031\f0\b\fs20 Hallo fünftes Kapitel\b0\par}
+  '{\rtf1\ansi\ansicpg1252\deff0{\fonttbl{\f0\fnil\fcharset0 Arial;}}\viewkind4\uc1\pard\lang1031\f0\b\fs20 Hallo fÃ¼nftes Kapitel\b0\par}
   '%%
 End Function
 '***************************************************************************************************************************************
@@ -2442,7 +2407,7 @@ Function HelpDlgProc(ByVal hDlg As HWND,ByVal uMsg As UINT,ByVal wParam As WPARA
   '#define IDR_HELPTEXT_DE 2
   '
   'Idea for later: Keyboard shortcuts for each tab control item. This isn't possible in a direct way.
-  '                Possible solution for TAB control shortcuts: WM_MENUCHAR chUser="ü" (252), fuFlag=MF_SYSMENU
+  '                Possible solution for TAB control shortcuts: WM_MENUCHAR chUser="Ã¼" (252), fuFlag=MF_SYSMENU
   '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   Static hResInfo As HRSRC,hResData As HGLOBAL,pbResource As Byte Ptr,tSetTextEx As SETTEXTEX,i As Long,hWndHlpTxt As HWND,hwndHlpTab As HWND
   Static swzBuffer As WString*2048,dwVersionInfoSize As Dword,pVerInfo As LPVOID,pswFileInfo As wString Ptr,pt As Point,wplc As WINDOWPLACEMENT
@@ -2462,7 +2427,7 @@ Function HelpDlgProc(ByVal hDlg As HWND,ByVal uMsg As UINT,ByVal wParam As WPARA
     Case &H07                                                 'German: Default language in resources
       tTcItem.pszText=Cast(LPTSTR,StrPtr(WStr(!"RTF books selber machen\0")))
       SendMessage(hwndHlpTab,TCM_INSERTITEM,0,cast(lParam,@tTcItem))
-      tTcItem.pszText=Cast(LPTSTR,StrPtr(WStr(!"Über...\0")))
+      tTcItem.pszText=Cast(LPTSTR,StrPtr(WStr(!"Ãœber...\0")))
       SendMessage(hwndHlpTab,TCM_INSERTITEM,0,cast(lParam,@tTcItem))
     Case Else                                                 'Neutral (english)
       tTcItem.pszText=Cast(LPTSTR,StrPtr(WStr(!"Create own RTF books\0")))
@@ -2827,7 +2792,7 @@ Function MetaInfoToRtf(ByVal pInBuffer As Any Ptr) As Any Ptr
   '
   'First convert 8 bit text into 16 bit wide character text. Normally UTF8 is prescribed, but we handle ANSI text (with it's possible problems) too:
   dwSizeInBuffer=GlobalSize(pInBuffer)
-  If *Cast(UByte Ptr,pInBuffer)=&HEF And *Cast(UByte Ptr,pInBuffer+1)=&HBB And *Cast(UByte Ptr,pInBuffer+2)=&HBF Then   'UTF-8 ByteOrderMark "ï»¿"
+  If *Cast(UByte Ptr,pInBuffer)=&HEF And *Cast(UByte Ptr,pInBuffer+1)=&HBB And *Cast(UByte Ptr,pInBuffer+2)=&HBF Then   'UTF-8 ByteOrderMark "Ã¯Â»Â¿"
     dwNumCharacters=MultiByteToWideChar(CP_UTF8,0,pInBuffer+3,dwSizeInBuffer-3,NULL,NULL)                               'Get needed size of output buffer in wide characters
     dwSizeOutBuffer=dwNumCharacters*2
     pOutBuffer=GlobalAlloc(GMEM_FIXED,dwSizeOutBuffer*2)
@@ -2883,7 +2848,7 @@ Function MetaInfoToRtf(ByVal pInBuffer As Any Ptr) As Any Ptr
         *pbOut=*pbIn
         pbOut+=1                                                            'ANSI characters neet 1 byte in RTF file
       Case Else                                                             'Non-ANSI characters, which we have to convert into Unicode
-        sBuffer="\u"+Str(*Cast(UShort Ptr,pbIn))+"?"                        'Example: "ä"-->"\u228?"
+        sBuffer="\u"+Str(*Cast(UShort Ptr,pbIn))+"?"                        'Example: "Ã¤"-->"\u228?"
         CopyMemory(pbOut,StrPtr(sBuffer),Len(sBuffer))
         pbOut+=Len(sBuffer)
       End Select  
@@ -2996,7 +2961,7 @@ Function MetaInfoToRtf(ByVal pInBuffer As Any Ptr) As Any Ptr
       *pbOut=*pbIn
       pbOut+=1                                                            'ANSI characters neet 1 byte in RTF file
     Case Else                                                             'Non-ANSI characters, which we have to convert into Unicode
-      sBuffer="\u"+Str(*Cast(UShort Ptr,pbIn))+"?"                        'Example: "ä"-->"\u228?"
+      sBuffer="\u"+Str(*Cast(UShort Ptr,pbIn))+"?"                        'Example: "Ã¤"-->"\u228?"
       CopyMemory(pbOut,StrPtr(sBuffer),Len(sBuffer))
       pbOut+=Len(sBuffer)
     End Select  
@@ -3393,8 +3358,3 @@ End Function
 '    MessageBox(0,Str(liTime2\1000000)+" Seconds"+Chr(13)+Str(liTime2\1000)+" Milliseconds"+Chr(13)+Str(liTime2)+" Microseconds","Debug: Time elapsed:",0)
 '  End If
 'End Sub
-'BESETTINGS (don't change!):
-'BECURSOR=589
-'BETOGGLE=1000000000000000000000000000000000000000
-'BETARGET=1
-'BERESFILE=RtfBook.rc
