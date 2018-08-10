@@ -1,0 +1,118 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031\deflangfe1031{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fmodern\fprq1\fcharset0 Courier New;}{\f2\froman\fprq2\fcharset0 Times New Roman;}{\f3\fswiss\fcharset0 Arial;}}
+{\colortbl ;\red255\green0\blue0;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue128;\red0\green128\blue128;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\nowidctlpar\cf1\b\f0\fs48 Further tips and hints\cf0\b0\fs20\par
+\par
+\cf2\b\fs28 Merge RTF files into one large RTF file\b0\fs20\par
+\cf0\par
+For printouts, for the corrector or similar, it may be necessary to have the entire book in a single RTF file. There are several good ways to do this. First unpack the RTF files with a ZIP unpacker into the directory "\f1 C:\\MyRtfFiles\f0 ", for example. Remember: An RTF book is nothing more than a ZIP file.\par
+If you have a newer version of MS Word, click on the menu item "Insert"\u8594?"Object". By pressing and holding the "Ctrl" key, more than one file can be selected to be inserted one after the other. Set file sorting to "alphabetical" to insert in the correct order.\par
+\fs8\par
+\fs20 For older Winword versions from version 97/2000 (= 8.0/9.0) there is a way using the following simple macro. Inserts it using the menu "Tools"\u8594?"Macro"\u8594?"Macros"\u8594?"Create" and start it:\par
+\fs8\par
+\trowd\trgaph70\trleft-70\trbrdrl\brdrs\brdrw10 \trbrdrt\brdrs\brdrw10 \trbrdrr\brdrs\brdrw10 \trbrdrb\brdrs\brdrw10 \trpaddl70\trpaddr70\trpaddfl3\trpaddfr3
+\clbrdrl\brdrw10\brdrs\clbrdrt\brdrw10\brdrs\clbrdrr\brdrw10\brdrs\clbrdrb\brdrw10\brdrs \cellx11340\pard\intbl\cf3\highlight4\lang1033\b\f1\fs18 Sub MAIN\cf5 ()\cf3\par
+  Dim CurFile\cf5 $\cf3\par
+  Dim nFiles\par
+  ReDim FileList\cf5 $(\cf6 0\cf5 )\cf3\par
+  Dim i\par
+  \par
+  ChDir \cf7 "C:\\MyRtfFiles"\cf3\par
+  nFiles \cf5 =\cf3  \cf5 -\cf6 1\cf3\par
+\par
+  CurFile\cf5 $\cf3  \cf5 =\cf3  WordBasic\cf5 .\cf3 [Files\cf5 $\cf3 ]\cf5 (\cf7 "*.*"\cf5 )\cf3\par
+  While CurFile\cf5 $\cf3  \cf5 <>\cf3  \cf7 ""\cf3\par
+    nFiles \cf5 =\cf3  nFiles \cf5 +\cf3  \cf6 1\cf3\par
+    CurFile\cf5 $\cf3  \cf5 =\cf3  WordBasic\cf5 .\cf3 [Files\cf5 $\cf3 ]\cf5 ()\cf3\par
+  Wend\par
+\par
+  If nFiles \cf5 >\cf3  \cf5 -\cf6 1\cf3  Then\par
+    ReDim FileList\cf5 $(\cf3 nFiles\cf5 )\cf3\par
+\par
+    FileList\cf5 $(\cf6 0\cf5 )\cf3  \cf5 =\cf3  WordBasic\cf5 .\cf3 [Files\cf5 $\cf3 ]\cf5 (\cf7 "*.*"\cf5 )\cf3\par
+    For i \cf5 =\cf3  \cf6 1\cf3  To nFiles\par
+      FileList\cf5 $(\cf3 i\cf5 )\cf3  \cf5 =\cf3  WordBasic\cf5 .\cf3 [Files\cf5 $\cf3 ]\cf5 ()\cf3\par
+    Next i\par
+    WordBasic\cf5 .\cf3 SortArray FileList\cf5 $()\cf3\par
+\par
+    For i \cf5 =\cf3  \cf6 0\cf3  To nFiles\par
+      Select Case LCase\cf5 $(\cf3 Right\cf5 $(\cf3 FileList\cf5 $(\cf3 i\cf5 ),\cf3  \cf6 4\cf5 ))\cf3\par
+      Case \cf7 ".rtf"\cf5 ,\cf3  \cf7 "rtf"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 )\cf3\par
+        Selection\cf5 .\cf3 InsertFile FileName\cf5 :=\cf3 FileList\cf5 $(\cf3 i\cf5 ),\cf3  Range _\par
+          \cf5 :=\cf7 ""\cf5 ,\cf3  ConfirmConversions\cf5 :=\cf3 False\cf5 ,\cf3  Link\cf5 :=\cf3 False\cf5 ,\cf3  Attachment\cf5 :=\cf3 False\par
+        Selection\cf5 .\cf3 InsertBreak Type\cf5 :=\cf3 wdPageBreak\par
+      Case \cf7 ".png"\cf5 ,\cf3  \cf7 ".jpg"\cf5 ,\cf3  \cf7 "jpeg"\cf5 ,\cf3  \cf7 "png"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 ),\cf3  \cf7 "jpg"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 ),\cf3  \cf7 "peg"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 )\cf3\par
+        Selection\cf5 .\cf3 InlineShapes\cf5 .\cf3 AddPicture FileName\cf5 :=\cf3 FileList\cf5 $(\cf3 i\cf5 ),\cf3  _\par
+          LinkToFile\cf5 :=\cf3 False\cf5 ,\cf3  SaveWithDocument\cf5 :=\cf3 True\par
+        Selection\cf5 .\cf3 InsertBreak Type\cf5 :=\cf3 wdPageBreak\par
+      Case Else\par
+      End Select\par
+    Next i\par
+\par
+    MsgBox \cf7 "Done! - "\cf3  \cf5 +\cf3  Str\cf5 $(\cf3 nFiles \cf5 +\cf3  \cf6 1\cf5 )\cf3  \cf5 +\cf3  \cf7 " files loaded."\cf3\par
+  Else\par
+    MsgBox \cf7 "No files found."\cf3\par
+  End If\par
+End Sub\cf0\highlight0\lang2057\b0\cell\row\pard\nowidctlpar\f0\fs8\par
+\lang1031\fs20 The macro expects the input RTF and PNG/JPEG files in the \f1 "C:\\MyRtfFiles\f0 " directory. No other files may exist in this directory. The files are always inserted in correct alphabetical order by the macro. If you are still using Winword 95 (the macro language is even easier there), you can use the following macro, which has no fundamental differences. If you use graphic files, with Winword 95 you have to make sure that import filters for JPEG and PNG are installed:\par
+\fs8\par
+\trowd\trgaph70\trleft-70\trbrdrl\brdrs\brdrw10 \trbrdrt\brdrs\brdrw10 \trbrdrr\brdrs\brdrw10 \trbrdrb\brdrs\brdrw10 \trpaddl70\trpaddr70\trpaddfl3\trpaddfr3
+\clbrdrl\brdrw10\brdrs\clbrdrt\brdrw10\brdrs\clbrdrr\brdrw10\brdrs\clbrdrb\brdrw10\brdrs \cellx11340\pard\intbl\cf3\highlight4\lang1033\b\f1\fs18 Sub MAIN\cf5 ()\cf3\par
+  ChDir \cf7 "C:\\MyRtfFiles"\cf3\par
+  nFiles \cf5 =\cf3  \cf5 -\cf3  \cf6 1\cf3\par
+\par
+  CurFile\cf5 $\cf3  \cf5 =\cf3  Files\cf5 $(\cf7 "*.*"\cf5 )\cf3\par
+  While CurFile\cf5 $\cf3  \cf5 <>\cf3  \cf7 ""\cf3\par
+    nFiles \cf5 =\cf3  nFiles \cf5 +\cf3  \cf6 1\cf3\par
+    CurFile\cf5 $\cf3  \cf5 =\cf3  Files\cf5 $()\cf3\par
+  Wend\par
+\par
+  If nFiles \cf5 >\cf3  \cf5 -\cf3  \cf6 1\cf3  Then\par
+    Dim FileList\cf5 $(\cf3 nFiles\cf5 )\cf3\par
+\par
+    FileList\cf5 $(\cf6 0\cf5 )\cf3  \cf5 =\cf3  Files\cf5 $(\cf7 "*.*"\cf5 )\cf3\par
+    For i \cf5 =\cf3  \cf6 1\cf3  To nFiles\par
+      FileList\cf5 $(\cf3 i\cf5 )\cf3  \cf5 =\cf3  Files\cf5 $()\cf3\par
+    Next i\par
+    SortDatenfeld FileList\cf5 $()\cf3\par
+\par
+    For i \cf5 =\cf3  \cf6 0\cf3  To nFiles\par
+      Select Case LCase\cf5 $(\cf3 Right\cf5 $(\cf3 FileList\cf5 $(\cf3 i\cf5 ),\cf3  \cf6 4\cf5 ))\cf3\par
+      Case \cf7 ".rtf"\cf5 ,\cf3  \cf7 "rtf"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 )\cf3\par
+        Einf\'fcgenDatei \cf5 .\cf3 Name \cf5 =\cf3  FileList\cf5 $(\cf3 i\cf5 ),\cf3  \cf5 .\cf3 Bereich \cf5 =\cf3  \cf7 ""\cf5 ,\cf3  \cf5 .\cf3 UmwandlungBest\'e4tigen \cf5 =\cf3  \cf6 0\cf5 ,\cf3  \cf5 .\cf3 Verkn\'fcpfung \cf5 =\cf3  \cf6 0\cf3\par
+        Einf\'fcgenManuellerWechsel \cf5 .\cf3 Art \cf5 =\cf3  \cf6 0\cf3\par
+      Case \cf7 ".png"\cf5 ,\cf3  \cf7 ".jpg"\cf5 ,\cf3  \cf7 "jpeg"\cf5 ,\cf3  \cf7 "png"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 ),\cf3  \cf7 "jpg"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 ),\cf3  \cf7 "peg"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 )\cf3\par
+        Einf\'fcgenGrafik \cf5 .\cf3 Name \cf5 =\cf3  FileList\cf5 $(\cf3 i\cf5 ),\cf3  \cf5 .\cf3 DateiVerkn\'fcpfen \cf5 =\cf3  \cf7 "0"\cf3\par
+        Einf\'fcgenManuellerWechsel \cf5 .\cf3 Art \cf5 =\cf3  \cf6 0\cf3\par
+      Case Else\par
+      End Select\par
+    Next i\par
+\par
+    MsgBox \cf7 "Done! - "\cf3  \cf5 +\cf3  Str\cf5 $(\cf3 nFiles \cf5 +\cf3  \cf6 1\cf5 )\cf3  \cf5 +\cf3  \cf7 " files loaded."\cf3\par
+  Else\par
+    MsgBox \cf7 "No files found."\cf3\par
+  End If\par
+End Sub\cf0\highlight0\lang2057\b0\cell\row\pard\nowidctlpar\lang1031\f0\fs8\par
+\fs20 LibreOffice does not offer a way to insert multiple files at once. But inserting file step by step is possible of course.\par
+\par
+\cf2\b\fs28 Shrink JPEG files\b0\fs20\par
+\cf0\par
+\b Tip 1:\b0  Using the tiny old tool "JPEG Optimizer 3.10" from Xat, JPEG files can be still shrinked while subjectively maintaining the same quality. The developer unfortunately disappeared from the net, but you still can find the program at many places in the net. The trick of this tool: You can check the image quality live when adjusting the compression strength, but also you can compress different picture areas to different compression levels: Picture regions attracting attention (e.g. eyes) and/or are important, you compress little, unimportant and/or background areas more strongly. This way you will regularly get a file half the size.\par
+The well-known graphics program GIMP also has a live preview for JPEG compression, but unfortunately no differently compressible picture segments.\par
+\par
+\b Tip 2:\b0  JPEG and PNG images are already compressed and will load a bit faster if they are not ZIP compressed again (i.e. compression level 0) in the book (the book's ZIP file). The "double muffled" only takes up unnecessary time, but brings almost nothing at all in additional compression.\par
+\f2\fs24\par
+\cf2\b\f0\fs28 Shrink RTF files\b0\fs20\par
+\cf0\par
+To display the RTF files, \i RTF book viewer\i0  uses the Windows system library \f1 msftedit.dll\f0 . If you want to read an eBook later with \i RTF book viewer\i0 , it is therefore pointless if RTF files contain information that cannot be displayed by msftedit.dll. Larger text processors such like \i Winword\i0  store a lot of those information, as well as invisible meta information, in the generated RTF files. Since the Windows tool \i Wordpad\i0  uses \f1 msftedit.dll\f0 , you can simply load an RTF file once and save it there. Then (almost) only the RTF file is left, which can also be processed by the RTF book viewer, loading is a bit faster and the RTF file is much smaller.\par
+\fs8\par
+\fs20 Tip for extremely large amounts of text: A minimalist RTF file can have the following internal structure: \f1\{\\rtf1 My Text\}\f0 . Such files can be created by script if necessary, if it is a matter of using few important formatting with large amounts of text and avoiding unnecessary "dead code", which eats up storage space without real benefit.\par
+Hard breaks are generated in RTF code with \f1\\par\f0 , followed by a space or a line break or another RTF code. It'll look like this: \f1\{\\rtf1 My text\\par A second line.\\par A third line\}\f0 . Real line breaks are not considered as formatting in RTF files, but may occur (e.g. for better clarity). A last example: \f1\{\\rtf1 My Text\\par A second line with \\b bold\\b0 and \\i italic\\i0 text.\\par A third line\}\f0 .\par
+The \i RtfViewer\i0  sets the ANSI character set with the font Arial 10 Pixel as default.\par
+\f2\fs24\par
+\cf2\b\f0\fs28 Later insertion of a chapter in the middle of an eBook\b0\fs20\par
+\cf0\par
+The (later) insertion of a new chapter at an arbitrary position requires the modification of the ordinal numbers of all subsequent file names. The well-known file manager tool \i Total Commander\i0  (www.ghisler.com) can do this comfortably for example via the menu "Files"\u8594?"File Renaming Tool".  By the way, Total Commander has another useful function: Via the menu item "Mark"\u8594?"Copy Selected Names To Clipboard" you can easily create the file list you need for the file \f1 #index.txt\f0 .\par
+\f2\fs24\par
+\pard\f3\fs20\par
+}
+ 

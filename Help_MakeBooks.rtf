@@ -1,0 +1,184 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031\deflangfe1031{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fswiss\fcharset0 Arial;}{\f2\fmodern\fprq1\fcharset0 Courier New;}{\f3\froman\fprq2\fcharset0 Times New Roman;}}
+{\colortbl ;\red255\green0\blue0;\red0\green0\blue255;\red128\green128\blue128;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\nowidctlpar\cf1\b\f0\fs48 Make your own RTF books\cf0\b0\fs20\par
+\b ...and the file format used\b0\par
+\par
+\cf2\b\fs28 The most important stuff:\b0\fs20\par
+\cf0\par
+RTF-Books (*.rbk) are eBooks having one or more RTF files packed together with images into a ZIP file. That is already the essential information, except that a certain structure is considered and the ZIP file gets the extension *.rbk. If you rename it to *.zip, you can unzip it with any UnZip program (see below) as well as in the normal Windows Explorer. Since both RTF and ZIP are well supported documented formats, such eBooks are compatible with any system and future-proof.\par
+By the way, the advantage was that the specially created viewer for MS Windows (RTF book viewer) is drastically smaller and faster than many comparable viewers.\par
+\fs8\par
+\fs20 Aside from that, the basic idea is similar to the comic book format *.CBZ (*.CBR etc., see here http://de.wikipedia.org/wiki/Comic-Book-Format).\par
+\fs8\par
+\fs20 The format was originally developed for scientific text and image collections. It may be used freely (like the viewer program RTF book viewer) without restrictions.\par
+\par
+\cf2\b\fs28 An eBook in three steps:\b0\fs20\par
+\cf0\par
+An RTF book can be created in 3 steps in a few minutes. What is needed:\par
+\pard\f1\fs8\par
+\pard\fi-284\li284\tx284\b\fs20 1.\b0\tab A simple word processor capable of RTF format. All you need is the free Windows WordPad.\par
+\b 2.\b0\tab A ZIP packer such as WinZip, WinRar, 7zip or the Total Commander.\par
+\b 3.\b0\tab If required: A graphics program that can generate JPEG and/or PNG files.\par
+\pard\fs8\par
+\fs20 The three steps to produce the RTF book:\par
+\pard\nowidctlpar\f0\fs8\par
+\pard\nowidctlpar\fi-284\li284\tx284\b\fs20 1.\b0\tab Write one or more chapters and save them as RTF files. Windows Wordpad is completely sufficient for this.\par
+\b 2.\b0\tab Pack all RTF text files into a common ZIP file. For example with WinZip, WinRar, 7zip or the Total Commander.\par
+\b 3.\b0\tab Rename the created archive file from *.zip into *.rbk.\par
+\pard\nowidctlpar\fs8\par
+\fs20 Done. In the RtfBook Viewer, each of the RTF files is displayed as a separate chapter in the table of contents. So if you copy 20 RTF files into one RtfBook file, the table of contents will contain 20 entries.\par
+In addition to RTF files, image files in JPEG and PNG format are allowed.\par
+\par
+\cf2\b\fs28 Refinement: Provide a chapter order\b0\fs20\par
+\cf0\par
+The chapters are sorted alphabetically in the table of contents. To create a specific sequence, the name of the RTF files is preceded by an ordinal number, e.g.:\par
+\fs8\par
+\pard\nowidctlpar\li284\f2\fs20 001 Primer.rtf\par
+003 The second chapter.rtf\par
+002 The first chapter.rtf\par
+004 The last chapter.rtf\f0\par
+\pard\nowidctlpar\fs8\par
+\fs20 The number of digits per ordinal number does not matter, for up to 99 entries in the table of contents it makes sense to use a two-digit ordinal number. Ordinal numbers may be omitted; only the alphabetical order is important. Leading zeros are mandatory for low ordinal numbers, otherwise the alphabetical sorting will fail. The preceding ordinal numbers, including the following space, are hidden in the table of contents, so they remain invisible to the reader of the eBook. The file extension is also omitted. The table of contents in our example will look like this:\par
+\fs8\par
+\fs20\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\par
+\pard\nowidctlpar\li284 Primer\par
+The first chapter\par
+The second chapter\par
+The last chapter\par
+\pard\nowidctlpar\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\par
+\par
+\cf2\b\fs28 Second refinement: Create chapter hierarchy\b0\fs20\par
+\cf0\par
+In addition to the order, a hierarchy of the chapters in the table of contents can be created. To do this, add a hyphen and a single-digit number to the ordinal number, which specifies the hierarchy level. Here is an example:\par
+\fs8\par
+\pard\nowidctlpar\li284\f2\fs20 001 Primer.rtf\par
+002 The first chapter.rtf\par
+003 The second chapter.rtf\par
+004-1 Sub chapter at level 1.rtf\par
+005-1 Sub chapter at level 1.rtf\par
+006-2 Sub chapter at level 2.rtf\par
+007-2 Sub chapter at level 2.rtf\par
+008 The last chapter.rtf\f0\par
+\pard\nowidctlpar\fs8\par
+\fs20 Omitting of the hierarchy specification is equivalent to level 0 i.e. \f2 001 Primer.rtf\f0  corresponds to \f2 001-0 Primer.rtf\f0 . The previous list creates the following hierarchy:\par
+\fs8\par
+\fs20\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\par
+\pard\nowidctlpar\li284 Primer\par
+The first chapter\par
+The second chapter\par
+\pard\nowidctlpar\li426 Sub chapter at level 1\par
+Sub chapter at level 1\par
+\pard\nowidctlpar\li568 Sub chapter at level 2\par
+Sub chapter at level 2\par
+\pard\nowidctlpar\li284 The last chapter\par
+\pard\nowidctlpar\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\par
+\fs8\par
+\fs20 A chapter can also be splitted into several files. This can be useful to avoid oversized files or when inserting image files in the chapter (see below). In this case, you simply increase the order number in the file name, keep the hierarchy level, but leave out the chapter name in the file name. This could look like this, for example:\par
+\fs8\par
+\pard\nowidctlpar\li284\f2\fs20 004-1 Title of the sub chapter.rtf\par
+005-1.rtf\par
+006-1.rtf\par
+\pard\nowidctlpar\f0\fs8\par
+\fs20 The RTF book viewer will display the continuation of the current chapter in the table of contents with "\'85".\par
+\par
+\cf2\b\fs28 Third refinement: Using an index file \f2 #index.txt\b0\f0\fs20\par
+\cf0\par
+Optionally, an index file \f2 #index.txt\f0  can be used. This file lists all chapters in exactly the same format as described above, one chapter per line, while the real files in this case only get the pure ordinal number as file names. The ZIP archive of the eBook contains here only the file names\f1  \f2 #index.txt\f1 , \f2 0001\f1 , \f2 0002\f1 , \f2 0003\f1 , \f2 0004\f1  etc.\f0\par
+\fs8\par
+\fs20 Normally this method is not necessary, but there are exceptions: For example, certain characters are not allowed in file names, such as < > ? ": | \\ / * (in special cases &), and there are reserved file names like COM1, COM2 ... LPT1 ... CON, PRN, AUX, NUL, which are used for devices. To deal with such cases, the list of chapter (file) names can be placed in an index file \f2 #index.txt\f0 .\par
+The use of an index file can also be useful for encrypted RtfBook files, because in a ZIP archive file names remain unencrypted. - And file names allow conclusions to be drawn about the contents of the book.\par
+A third advantage is that you can add new chapters to the file \f2 #index.txt\f0  in the middle of the list without having to give the following chapters new ordinal numbers. When using a \f2 #index.txt\f0 , the ordinal number no longer specifies the chapter order, but only acts as a file identifier. The order, as mentioned above, is determined only by the list in the file \f2 #index.txt\f0 .\par
+This has the fourth advantage that one and the same chapter can be listed several times in the index file, for example once for the table of contents and a second time in a keyword register, author register, etc.\par
+\fs8\par
+\fs20 The index file \f2 #index.txt\f0  is a simple text file. It is strongly recommended to save \f2 #index.txt\f0  in UTF-8 format with a BOM at the beginning of the file (ByteOrderMark, 3 bytes, namely \'ef "\'bf). With the normal Windows text editor notepad.exe you only have to select "UTF-8" as the encoding for "Save as...", that's all. The UTF-8 format enables unique coding of special characters worldwide, as well as problem-free use of foreign characters. Ordinary text files (renouncement of UTF-8) are still allowed.\par
+The index file must have the file name \f2 #index.txt\f0  and has exactly the same structure as the file names shown above, but this time the file list is in the index file \f2 #index.txt\f0 , i.e. in our example:\par
+\fs8\par
+\pard\nowidctlpar\li284\f2\fs20 001 Primer.rtf\par
+002 The first chapter.rtf\par
+003 The second chapter.rtf\par
+004-1 Sub chapter at level 1.rtf\par
+005-1 Sub chapter at level 1.rtf\par
+006-2 Sub chapter at level 2.rtf\par
+007-2 Sub chapter at level 2.rtf\par
+008 The last chapter.rtf\f0\par
+\pard\nowidctlpar\fs8\par
+\fs20 In this case, the real file names have the file names...\par
+\fs8\par
+\pard\nowidctlpar\li284\f2\fs20 001\par
+002\par
+003\par
+004\par
+005\par
+006\par
+007\par
+008\par
+\pard\nowidctlpar\f0\fs8\par
+\fs20 ...so a plain number with leading zeros without (!) hierarchy specification and without (!) file suffix. The RtfBook reader will read the left digits up to the first space or hyphen in each line of the file list of \f2 #index.txt\f0  and search for a file with this file name. Otherwise everything described above is valid and here really nothing more happens than a shift of all file names into the index file \f2 #index.txt\f0 , whereby the ordinal number is then also the real file name.\par
+A hint: An eBook loads a bit faster, if \f2 #index.txt\f0  is placed at the begin of the eBook ZIP file.\par
+\par
+\cf2\b\fs28 Allowed file types, picture files and attachments\b0\fs20\par
+\cf0\par
+Besides \cf1\b RTF\cf0\b0  files, image files in \cf1\b PNG\cf0\b0  and \cf1\b JPEG\cf0\b0  format and binary attachments are allowed.\par
+For the image files you should pay attention to reasonable file and image sizes, which have no higher quality than it actually makes sense on the screen. However, if you need a high-quality image file, for example as an author who passes on his material to an editor, it is recommended to insert one image version in pragmatic quality for the screen display and a second image version as a binary attachment by adding a further suffix to the file name such as. *.bin, e.g. the file \f2 MyImage_HiRes.png.bin\f0  for the image \f2 MyImage.jpg\f0 . Binary attachments are any files that are not RTF, JPEG or PNG and whose only function is to be extracted via "Save as...". A separate heading is not provided for binary attachments. If a comment is necessary, it must be inserted in the chapter before or after it.\par
+\par
+\cf2\b\fs28 Embedded pictures\b0\fs20\par
+\cf0\par
+Pictures embedded in the middle of the text cost a lot of computing time and memory. Therefore, they should only be used in exceptional cases and then the following notes should be observed.\par
+Unlike raster images, EMF vector graphics can usually be embedded without problems. With raster graphics, only uncompressed (!) bitmaps can be reliably displayed on older Windows systems. Embedded (!) compressed raster pictures as JPEG or PNG may not be displayed by the RTF book viewer under older Windows versions (Windows XP and older). To avoid misunderstandings: This does not apply to plain JPEG and PNG files - these are supported by the RTF book viewer on all systems.\par
+When embedding, care should be taken not to embed images that are too large. This applies not only to height and width, but also to colour depth. For example, you should not create a full-color bitmap (24 bits per pixel) if a picture with 16 colors (4 bits per pixel) is sufficient. Pasting should not be done via the clipboard, where the color depth may be changed again, but (during embedding) as a file. This can be done with Winword via the menu "Insert"\u8594?"Graphic"\u8594?"Graphic from file..." or with Wordpad via the menu "Insert"\u8594?"Object..."\u8594?"Create from file..." or, for LibreOffice sWriter, "Insert"\u8594?"Image". You should also not embed too many images in a chapter (an RTF file).\par
+However, it is most economical to store pixel pictures as separate plain PNG, JPEG files. These can always be displayed by the RTF book viewer, if necessary (on very old systems), after installing GDI+ or after getting a newer version of the system library \f2 msftedit.dll\f0 .\par
+Another tip for EMF vector graphics: If the EMF graphics should also be available as binary attachment, I recommend my own tool \f2 MetaView.exe\f0  for creating the EMF graphics file via clipboard. The tool is only 20KB in size and generates EMF files with the correct aspect ratio, which is unfortunately not the norm with many other tools.\par
+\par
+\cf2\b\fs28 Formatting Tips\b0\fs20\par
+\cf0\par
+For normal text, Arial 10 Pixel left-justified or justified is the best choice. Decorated fonts, e.g. Serif fonts such as Times New Roman, are usually less suitable on the screen. For authors anyway: editors and lectors hate anything that goes beyond six or seven basic formats, and typesetters go crazy with it anyway. ;-)\par
+\fs8\par
+\fs20 Since the RTF representation of the RTF book viewer uses the same system library as Wordpad (\f2 msftedit.dll\f0 ), it is worth loading RTF files created in other programs (such as Winword) once into Worpad and saving them before they are inserted into the eBook. This allows you to see which formatting may not be supported at all. This also makes the files smaller and faster to load in the RTF book viewer. Another advantage of "filtering" via Wordpad is that any unwanted meta information is deleted from the RTF files. Graphics should be inserted into the eBook as separate PNG or JPEG image files, because embedded images may only be uncompressed and have a drastic (!) space requirement.\par
+\par
+\cf2\b\fs28 Encrypted eBooks\b0\fs20\par
+\cf0\par
+The possibility of encryption was obvious because this is already part of the ZIP format. In addition, the RTF book format was also intended for an outliner program. Hard encryption methods such as AES-256 are possible, although it should be noted that only the file content of ZIP files is encrypted, not the file names.\par
+Encryption may be useful for simple eBooks as parental control, for transport on USB sticks or similar.\par
+\par
+\cf2\b\fs28 Metadata in the file \f2 #meta.txt\b0\f0\fs20\par
+\cf0\par
+If necessary (no obligation) metadata can be made available to the eBook, which contain data, such as book title, author, publication date etc. This data is stored in the \f2 #meta.txt\f0  file in text format. As with index file \f2 #index.txt\f0  (see above), saving in UTF-8 format is strongly recommended when using special characters.\par
+In the simplest case, the metafile contains a simple text description without any structure. This is better than nothing!\par
+If the meta information should be readable for external indexing and search programs, the file \f2 #meta.txt\f0  should be the first file in the ZIP archive of the *.rbk file, and it should be uncompressed and unencrypted. Everyone is free to decide which metadata is offered, but at least title, author, date of first publication and language are recommended.\par
+\par
+The meta file can also consist of \cf1\i simplified\cf0\i0  (!) DublinCore elements, as shown in the following example:\par
+\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\par
+\f2\fs18 title: \'dcber die spezielle und die allgemeine Relativit\'e4tstheorie\par
+subtitle:\par
+relation: Albert-Einstein-Gesamtausgabe\par
+creator: Einstein, Albert\par
+translator: Berg, Carl\par
+\lang2057 contributor: \par
+subject: science\par
+subject: physics\par
+language: de\par
+publisher: Springer Berlin Heidelberg\par
+source: Gutenberg Project http://.....\par
+publication: 1921\par
+creation: 1920\par
+modification: 2017-01-31\par
+rights: Copyright expired\par
+format: RTF book\par
+ISBN: 978-3-976-54321-0\par
+DOI: 10.1007/978-3-976-54321-0\par
+Open Library: OL1234567890\par
+description: This is... ... ... ...\par
+\lang1031\f0\fs20\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\par
+Each individual piece of information therefore consists of code double-point content. The code (e.g. "title") may not be longer than 32 characters. Spaces before or after the separating colon are ignored. The following content has no restrictions except the end of line character (see below). The individual information ends with a line end. Unused codes do not have to be listed, so they can be omitted completely. A code may occur as often as desired, for example, to be able to specify several keywords ("subject"). Custom DublinCore codes may be used if the above are not sufficient for the desired purpose, but they must be simple codes; nesting is not allowed (here, in RTF books). Multi-line entries (e.g. in the description) are possible by using the same element several times in succession.\par
+\par
+\cf2\b\fs28 Metainformation for the individual chapters\b0\fs20\par
+\cf0\par
+The RTF book viewer supports as a special function the search for \cf3\b dark grey\cf0\b0  text (Winword: "Grey 50%, Wordpad: "grey", RGB=128,128,128=0x0080808080). This function is of course universally usable, but was created especially for metainformation within the chapters. For example, you can insert the text "\cf3 Keywords: trees, plants, flora, Australia\cf0 " at the top of the chapter and format it in dark grey. If you want to search later only within the meta information, but not in the other text, you simply search with the search option "Search... dark grey". Of course, this only works as long as dark grey text color is not used for other purposes. However, this simple and convenient option has proven to be very useful, especially as it can be used anywhere in the middle of the text if required and the tags can be removed in a suitable word processing program (e.g. Winword) in a single step if required.\par
+\par
+\cf2\b\fs28 At the very end\b0\fs20\par
+\cf0\par
+The RtfBook format was developed as part of an archiving project, because there was only slow and awkward to use software for the existing file formats and/or the format itself left wishes. Something comfy and comfortable was needed, where texts and pictures should also be removable in a simple way if required. It was also planned to program a real outliner program for the format in addition to the viewer, which would have the same structure as the familiar programs KeyNote, WinGuide and TreePad, but with an open and easy-to-use file format that would be easily readable across all systems and for an unforeseeable period of time. And RTF files in a ZIP file are undoubtedly a compatible thing, even in the long run ;-)\par
+For the release of the RTF book viewer outside of the archiving project, the program was extensively revised again, which is why we start here with file version 1.0.0.0.\par
+\pard\f3\par
+}
+ 

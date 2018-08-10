@@ -1,0 +1,65 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031\deflangfe1031{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fmodern\fprq1\fcharset0 Courier New;}{\f2\fswiss\fcharset0 Arial;}}
+{\colortbl ;\red255\green0\blue0;\red0\green0\blue255;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\nowidctlpar\cf1\b\f0\fs48 RTF book viewer\cf0\b0\fs20\par
+\b\'a9Roland Walter 2018, Freeware\par
+Updates here: \cf2\f1 www.rowalt.de/rtfbook/\cf0\f0  \par
+\fs8\par
+\fs20 The program runs under Windows XP upwards and Linux Wine, Linux Crossover and ReactOS.\par
+\b0\par
+\cf2\b\fs28 General information\b0\fs20\par
+\cf0\par
+The \i RTF book viewer\i0  is an eBook viewer for eBooks in *.rbk format. These are essentially ZIP-packed RTF files, nothing more. This also made a slim, fast eBook viewer possible. And I needed something like that for my own work. \par
+The eBook format is most similar to the ComicBook format, where JPEG files are packed into a ZIP file. For more details, see the detailed description of the format. RTF books can also be encrypted and can contain JPEG and PNG images as well as extractable attachments in addition to RTF files.\par
+\fs8\par
+\fs20 The program is largely selfexplaining. The eBooks can theoretically be up to 2GB in size, because only one chapter (i.e. an RTF file or an image file) is loaded at one time.\par
+\fs8\par
+\fs20 The program can be started directly without installation, also directly from the USB stick or similar. If necessary, you can in the menu "File"\u8594?"Settings" specify that settings such as window size and position, last book and text position are saved in the Windows registry. Nothing is stored in the registry or elsewhere in the system by default. If this option is deselected later , the program removes all settings from the registry when exiting. Waste avoidance! :-)\fs24\par
+\fs8\par
+\fs20 The program interface is automatically set to German or English. Alternatively, the language can be set in the menu "File"\u8594?"Settings". More languages would be possible theoretically , but the work has to be done by someone -)\par
+\fs8\par
+\fs20 Metadata (title, author, short description...) are supported as plain text as well as DublinCore.\par
+\fs8\par
+\fs20 The program should also should run (untested) under Windows versions older than XP or comparable older Linux Wine versions, if the library GDI+ and msftedit.dll are available. See also below.\par
+\fs8\par
+\fs20 The program is suitable also for large eBooks. I have successfully tested it with 60MB books (=ZIP files) containing more than 40000 chapters (single RTF files). The speed was surprisingly good, but please don't blame me for not wanting to kill my hard drive to determine the real limits ;-)\par
+\par
+\cf2\b\fs28 Encrypted RTF books\par
+\cf0\b0\fs20\par
+\pard\nowidctlpar\tx284 When creating an RTF book, it can be encrypted using the normal encryption function for ZIP files. It is also possible to encrypt only individual chapters. It is also possible (but can be very annoying) to use a different key for each chapter.\par
+\fs8\par
+\fs20 Since the used ZIP format allows very strong encryption, practical questions about possible security gaps arise:\par
+\pard\nowidctlpar\fi-142\li142\tx142 - The program does not create any temporary file on the disk, but it has not paid attention to whether called functions of the Windows operating system do this. At least for images it should be noted that the internally used GDIplus library could work with temporary files (at least one report suggested this).\par
+- The RTF book viewer itself has no network functions with one exception: The links in the help text. However, these links are called only indirectly via the Windows shell.\par
+\pard\nowidctlpar\tx284\fs8\par
+\fs20 The password is requested as soon as the first encrypted chapter is to be opened. The RTF book viewer keeps the password in memory until either another book is opened or the program is closed, or a (different) chapter cannot be decrypted with this password. In the same way, the "Do not ask for the password" option only applies until the program ends or another book is opened.\par
+\pard\nowidctlpar\par
+\cf2\b\fs28 The command line\par
+\cf0\b0\fs20\par
+The program loads the last open book on startup, if it can still be found or loaded and the file name of another book is not passed via command line.\par
+\par
+\cf2\b\fs28 File export\par
+\cf0\b0\fs20\par
+In the export dialog you can decide which chapter (and which image) should be exported by selecting the corresponding chapter. The export format is determined by the selected file name (its suffix). At the moment only the KeyNote format is supported.\par
+\fs8\par
+\b\fs20 KeyNote (\f1 *.knt\f0 ):\b0  KeyNote is a quite well known (and very good) outliner program, originally produced by Marek Jedlinski as Freeware and currently continued under the name KeyNote NF (New Features) by Daniel Prado Velasco. If you export in this format, all marked (RTF) texts and the (PNG and JPEG) images are exported with the existing hierarchy. The created file can be inserted into an existing file in KeyNote NF or loaded as a separate file.\par
+Note 1: The RTF file viewer must export pictures uncompressed, because KeyNote cannot display JPEG and PNG, so please be careful with pictures. Binary attachments do not exist in KeyNote and are therefore not even available in the export list.\par
+Note 2: KeyNote NF (v1.7.9 Beta 9, May 2018) has a display bug when breaking the text at the right window margin. If this effect occurs, deactivate and reactivate the menu item "Format"-->"Word Wrap" once. The display is then correct until the next program start.\par
+\par
+\cf2\b\fs28 The search function\par
+\cf0\b0\fs20\par
+The search function in the RTF book viewer is quite powerful. The possibility to search for grey text (50% grey, RGB 128,128,128) is intended to place meta-information e.g. for keywords directly into the individual chapters or even in the middle of the text, if it is defined that grey text colour is used as an indicator for such information. To anticipate an obvious question: It would have been a tiny step from the programming effort to include the search for further formatting, but sometimes less is more ;-)\par
+\fs8\par
+\fs20 Independently of this, there is a quick-search function by simply typing in characters without a search window or, alternatively, the F3 key for continuing the search. The quick-search is performed only in the current-loaded text or in the table of contents and is always case-sensitive. If you enter a single character, the search is performed automatically (immediately) for this character. You can search for sequences of characters by entering the next character after less than a second. Character entries after pauses longer than one second create a new search term. Press F3 to continue the search for the currently set search term.\par
+The quick-search is performed in the text window or in the table of contents, depending on which of the two windows is currently active. Separate search terms are used for the text window and the table of contents.\par
+\par
+\cf2\b\fs28 The system library \f1 msftedit.dll\f0\par
+\cf0\b0\fs20\par
+Displaying of RTF files is based on the library \f1 msftedit.dll\f0 , which has been part of the system since Windows XP. It is recommended to search for the latest version of this DLL. Under Windows XP version 5.41.21.2510 seems to be the latest version. I have successfully tested all functions of the program with this version, including displaying images. To avoid misunderstandings among programmers: No, this version cannot yet display JPEG/PNG files; the program therefore decompresses them itself. Advantage: I had the extra work once, but the program runs with all functions also under Linux Wine and Windows XP, which was important in my case. Under Wine/Crossover/ReactOS it is also very recommendable to exchange the existing DLL as described above. If you don't want to manipulate the system, you can simply copy the file \f1 msftedit.dll\f0  into the same directory as the RTF book viewer, because when loading the library in your own directory always has priority over libraries in other directories.\par
+\par
+\cf2\b\fs28 Terms of use and copyright\par
+\cf0\b0\fs20\par
+The program is freeware, therefore it may be used and distributed for free (also commercially etc.). The rule is: "Look the gifted horse into his mouth, but don't blame me if it bites and bucks. This means: You use the software under the condition that you alone have the responsibility.\par
+The ZIP library of Dieter Baron and Thomas Klausner was used for the ZIP functionality. Great work, by the way, thank you!\par
+\pard\f2\par
+}
+ 

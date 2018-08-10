@@ -1,0 +1,67 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031\deflangfe1031{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fmodern\fprq1\fcharset0 Courier New;}}
+{\colortbl ;\red255\green0\blue0;\red0\green0\blue255;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\nowidctlpar\cf1\b\f0\fs48 RTF book viewer\cf0\b0\fs20\par
+\i\fs18 (fr\'fche Beta-Version, einige Features folgen noch, Versionsnummer siehe oben)\b\i0\fs20\par
+\'a9Roland Walter 2018, Freeware\par
+Updates hier: \cf2\f1 www.rowalt.de/rtfbook/\cf0\f0  \par
+\fs8\par
+\fs20 Das Programm l\'e4uft unter Windows XP aufw\'e4rts und Linux Wine, Linux Crossover und ReactOS.\b0\par
+\par
+\cf2\b\fs28 Allgemeines\b0\fs20\par
+\cf0\par
+Der \i RTF book viewer\i0  ist ein eBook-Betrachter f\'fcr eBooks im *.rbk-Format. Das sind im Wesentlichen ZIP-verpackte RTF-Dateien, mehr nicht. Damit wurde auch ein flinker schlanker eBook-Betrachter m\'f6glich. - Und so etwas brauchte ich f\'fcr die eigene Arbeit. \fs8\par
+\fs20 Das eBook-Format \'e4hnelt am ehesten dem ComicBook-Format, wo JPEG-Dateien in einer ZIP-Datei verpackt werden. Genaueres siehe in der ausf\'fchrlichen Beschreibung des Formats. RTF books k\'f6nnen auch verschl\'fcsselt sein und neben RTF-Dateien JPEG- und PNG-Bilder sowie extrahierbare Attachements aufnehmen.\par
+\fs8\par
+\fs20 Das Programm ist weitgehend selbsterkl\'e4rend. Die eBooks k\'f6nnen theoretisch bis zu 2GB gro\'df sein, weil immer nur ein Kapitel (dh. eine RTF-Datei oder eine Bilddatei) gleichzeitig geladen wird.\par
+\fs8\par
+\fs20 Das Programm kann ohne Installation sofort gestartet werden, auch direkt vom USB-Stick o.\'e4. Bei Bedarf kann man im Men\'fc Datei\u8594?Einstellungen festlegen, dass Einstellungen wie Fenstergr\'f6\'dfe und -Position, letztes Buch und Textposition in der Windows-Registry gespeichert werden. Als Voreinstelllung wird nichts in der Registry oder an anderen Stellen des Systems gespeichert. Wenn diese Option sp\'e4ter wieder abgew\'e4hlt wird, entfernt das Programm beim Beenden alle Einstellungen wieder aus der Registry. M\'fcllvermeidung! \fs24 :-)\par
+\fs8\par
+\fs20 Die Programmoberfl\'e4che wird automatisch auf Deutsch oder Englisch eingestellt. Alternativ kann die Sprache im Men\'fc Datei\u8594?Einstellungen festgelegt werden. Mehr Sprachen w\'e4ren theoretisch m\'f6glich, aber die Arbeit muss ja auch erst einmal jemand machen ;-)\par
+\fs8\par
+\fs20 Metainformationen (Titel, Autor, Kurzbeschreibung...) werden sowohl als einfacher Text, als auch als DublinCore unterst\'fctzt.\par
+\fs8\par
+\fs20 Das Programm sollte (ungetestet) auch unter Windows-Versionen \'e4lter als XP laufen, bzw. auch bei vergleichbaren \'e4lteren Linux-Wine-Versionen, wenn die Bibliotheken GDI+ und \f1 msftedit.dll\f0  vorhanden sind. Dazu siehe auch unten.\par
+\fs8\par
+\fs20 Das Programm ist auch f\'fcr gro\'dfe eBooks geeignet. Ich habe es erfolgreich mit 60MB gro\'dfen B\'fcchern (=ZIP-Dateien) getestet, die \'fcber 40000 Kapitel (einzelne RTF-Dateien) enthielten. Die Geschwindigkeit war \'fcberraschend gut, aber nehmen Sie es mir bitte nicht \'fcbel, dass ich zur Ermittlung der echten Grenzen meine Festplatte nicht t\'f6ten wollte ;-)\par
+\par
+\cf2\b\fs28 Verschl\'fcsselte RTF-Books\par
+\cf0\b0\fs20\par
+Ein \i RTF book\i0  kann bei seiner Erzeugung mit den normalen Verschl\'fcsselungsfunktion f\'fcr ZIP-Dateien verschl\'fcsselt werden. Es ist auch m\'f6glich, nur einzelne Kapitel zu verschl\'fcsseln. Es ist auch m\'f6glich (kann aber sehr nervend werden), f\'fcr jedes Kapitel einen anderen Schl\'fcssel verwenden.\par
+\fs8\par
+\fs20 Da das verwendete ZIP-Format sehr starke Verschl\'fcsselung zul\'e4sst, ergeben sich praktische Fragen zu eventuellen Sicherheitsl\'fccken:\par
+\pard\nowidctlpar\fi-284\li284\tx284 -\tab Das Programm legt keine tempor\'e4ren Dateien auf dem Datentr\'e4ger an, es wurde aber nicht darauf geachtet, ob aufgerufene Funktionen des Windows-Betriebssystems dies tun. Zumindest bei Bildern w\'e4re zu beachten, dass die intern verwendete GDIplus-Bibliothek mit Tempor\'e4rdateien arbeiten k\'f6nnte (das legte zumindest ein Bericht nahe).\par
+-\tab Der \i RTF book viewer\i0  hat mit einer Ausnahme selbst keine Netzwerkfunktionen: Die Links im Hilfetext. Diese Links werden allerdings nur indirekt \'fcber die Windows-Shell aufgerufen.\par
+\pard\nowidctlpar\tx284\fs8\par
+\fs20 Die Passwortabfrage erfolgt, sobald das erste verschl\'fcsselte Kapitel ge\'f6ffnet werden soll. Der \i RTF book viewer\i0  h\'e4lt das Passwort im Speicher, bis entweder ein anderes Buch ge\'f6ffnet oder das Programm beendet wird, oder ein (anderes) Kapitel nicht mit diesem Passwort entschl\'fcsselt werden kann. Analog gilt die Option "Nicht mehr nach dem Passwort fragen" nur bis Programmende oder \'d6ffnen eines anderen Buchs.\par
+\pard\nowidctlpar\par
+\cf2\b\fs28 Die Kommandozeile\par
+\cf0\b0\fs20\par
+Das Programm l\'e4dt beim Starten das letzte ge\'f6ffnete Buch, falls es noch gefunden/geladen werden kann und nicht per Kommandozeile der Dateiname eines anderen Buchs \'fcbergeben wird.\par
+\par
+\cf2\b\fs28 Datei-Export\par
+\cf0\b0\fs20\par
+Man kann im Export-Dialog durch Markieren der entsprechenden Kapitel entscheiden, welches Kapitel (und welches Bild) exportiert werden soll. Das Export-Format wird anhand des gew\'e4hlten Dateinamens (dessen Suffix) entschieden.\par
+\fs8\par
+\b\fs20 KeyNote (\f1 *.knt\f0 ):\b0  KeyNote ist ein recht bekanntes (und sehr gutes) Outliner-Programm, urspr\'fcnglich von Marek Jedlinski als Freeware hergestellt und momentan unter dem Namen KeyNote NF (New Features) von Daniel Prado Velasco fortgef\'fchrt. Exportiert man in diesem Format, dann werden alle markierten (RTF-) Texte und die (PNG- und JPEG-) Bilder mit bestehender Hierarchie exportiert. Die erzeugte Datei ist in KeyNote NF in eine bestehende Datei einf\'fcgbar oder als eigene Datei ladbar.\par
+Hinweis 1: Bilder m\'fcssen unkomprmiert exportiert werden, weil KeyNote JPEG und PNG nicht darstellen kann; also bei Bildern bitte umsichtig bleiben. Bin\'e4r-Attachements gibt es bei KeyNote nicht und stehen deshalb in der Export-Liste gar nicht erst zur Auswahl.\par
+Hinweis 2: KeyNote NF (v1.7.9 Beta 9, Mai 2018) hat einen Anzeige-Bug beim Umbrechen des Texts am rechten Fensterrand. Wenn dieser Effekt auftritt, dann den Men\'fceintrag "Format"-->"Word Wrap" einmal deaktivieren und wieder aktivieren. Anschlie\'dfend ist die Darstellung bis zum n\'e4chsten Programmstart korrekt.\par
+\par
+\cf2\b\fs28 Die Suchfunktion\par
+\cf0\b0\fs20\par
+Die Suchfunktion im \i RTF book viewer\i0  ist recht ist relativ m\'e4chtig. Die M\'f6glichkeit, nach grauem Text zu suchen (50% grau, RGB 128,128,128) ist daf\'fcr gedacht, Metainformationen z.B. f\'fcr Schlagworte o.\'e4. direkt in die einzelnen Kapitel oder sogar mitten in den Text setzen zu k\'f6nnen, wenn man vereinbart, dass graue Textfarbe als Kennzeichen f\'fcr solche Informationen gilt. Um einer naheliegenden Frage zuvorzukommen: Es w\'e4re vom Programmieraufwand nur noch ein winziger Schritt gewesen, die Suche nach weiteren Formatierungen einzubauen, aber manchmal ist weniger mehr ;-)\par
+\fs8\par
+\fs20 Unabh\'e4ngig davon existiert au\'dferdem eine Schnellsuche durch einfaches Eintippen von Zeichen ohne Suchfenster bzw. alternativ die Taste F3 zum Weitersuchen. Die Schnellsuche erfolgt nur im aktuell geladenen Text bzw. im Inhaltsverzeichnis und beachtet stets die Gro\'df-Kleinschreibung. Tippt man ein einzelnes Zeichen ein, erfolgt die Suche automatisch (sofort) nach diesem Zeichen. Nach Zeichenketten sicht man, indem nach weniger als einer Sekunde das n\'e4chste Zeichen eigegeben wird. Zeicheneingaben nach Pausen l\'e4nger als einer Sekunde erzeugen einen neuen Suchbegriff. Mit der Taste F3 kann die Suche nach dem momentan gesetzten Suchbegriff fortgesetzt werden.\par
+Die Schnellsuche ertolgt im Textfenster oder im Inhaltsverzeichnis, je nachdem, welches der beiden Fenster gerade aktiv ist. F\'fcrs Textfenster und das Inhaltsverzeichnis werden getrennte Suchbegriffe verwendet.\par
+\par
+\cf2\b\fs28 Die Bibliothek \f1 msftedit.dll\f0\par
+\cf0\b0\fs20\par
+Die Anzeige der RTF-Dateien basiert auf der Bibliothek \f1 msftedit.dll\f0 , die seit Windows XP zum System geh\'f6rt. Es lohnt sich, nach der neuesten Version dieser DLL zu suchen. Unter Windows XP scheint die Version 5.41.21.2510 der letzte Stand gewesen zu sein. Ich habe alle Funktionen des Programms erfolgreich mit dieser Version getestet, auch die Darstellung von Bildern. Damit bei Programmierern keine Missverst\'e4ndnisse entstehen: Nein, diese Version kann noch keine JPEG-/PNG-Dateien darstellen; das Programm dekomprimiert sie deshalb selbst. Vorteil: Ich hatte zwar einmal die Mehrarbeit, aber daf\'fcr l\'e4uft das Programm mit allen Funktionen auch unter Linux Wine und Windows XP, was wichtig war. Unter Wine/Crossover/ReactOS lohnt es sich ebenfalls sehr, die vorhandene DLL wie eben beschrieben auszutauschen. Wer nicht ins System eingreifen will, kann die die Datei \f1 msftedit.dll\f0  auch einfach ins selbe Verzeichnis wie den \i RTF book viewer\i0  kopieren, weil beim Laden die Bibliothek im eigenen Verzeichnis stets Vorrang vor Bibliotheken in anderen Verzeichnissen hat.\par
+\par
+\cf2\b\fs28 Nutzungsbedingungen und Urheberrecht\par
+\cf0\b0\fs20\par
+Das Programm ist Freeware, darf also frei verwendet und weitergegeben werden (auch kommerziell usw.). Es gilt: Schau dem geschenkten Gaul auf jeden Fall ins Maul, aber mach mich nicht daf\'fcr verantwortlich, wenn er bei\'dft und bockt. Will hei\'dfen: Du benutzt die Software unter der Bedingung, dass Du alleine die Verantwortung hast.\par
+F\'fcr die ZIP-Funktionalit\'e4t wurde die ZIP-Bibliothek von Dieter Baron and Thomas Klausner verwendet. Gro\'dfartige Arbeit \'fcbrigens, Dankesch\'f6n!\par
+\par
+\par
+}
+ 

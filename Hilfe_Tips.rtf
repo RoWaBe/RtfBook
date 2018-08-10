@@ -1,0 +1,117 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031\deflangfe1031{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fmodern\fprq1\fcharset0 Courier New;}{\f2\froman\fprq2\fcharset0 Times New Roman;}{\f3\fswiss\fcharset0 Arial;}}
+{\colortbl ;\red255\green0\blue0;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue128;\red0\green128\blue128;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\nowidctlpar\cf1\b\f0\fs48 Weitere Tips und Hinweise\cf0\b0\fs20\par
+\par
+\cf2\b\fs28 RTF-Dateien zu einer gro\'dfen RTF-Datei zusammenf\'fchren\b0\fs20\par
+\cf0\par
+F\'fcr Ausdrucke, f\'fcr den Lektor o.\'e4., kann es n\'f6tig sein, das gesamte Buch in einer einzelnen RTF-Datei zusammenzufassen. Daf\'fcr gibt es mehrere gute M\'f6glichkeiten. Zun\'e4chst entpackt man die RTF-Dateien (und ggf. JPEG-/PNG-Dateien) mit einem ZIP-Entpacker zum Beispiel ins Verzeichnis "\f1\fs18 C:\\MyRtfFiles\f0\fs20 ". Zur Erinnerung: Ein RTF-Buch ist nichts weiter als eine ZIP-Datei.\par
+Hat man eine neuere Version von MS Word, dann klickt man dort auf den Men\'fcpunkt "Einf\'fcgen"\u8594?"Objekt". Durch Dr\'fccken und Halten der "Strg."-Taste kann mehr als eine Datei ausgew\'e4hlt werden, die nacheinander eingef\'fcgt werden sollen. Die Dateisortierung muss auf "alphabetisch" eingestellt sein, damit in der korrekten Reihenfolge eingef\'fcgt wird.\par
+\fs8\par
+\fs20 F\'fcr \'e4ltere Winword-Versionen ab Version 97/2000 (= 8.0/9.0) gibt es einen Weg \'fcber das folgende einfache Makro, das man \'fcber das Men\'fc "Extras"\u8594?"Makro"\u8594?"Makros"\u8594?"Erstellen" einf\'fcgt und dann startet:\par
+\fs8\par
+\trowd\trgaph70\trleft-70\trbrdrl\brdrs\brdrw10 \trbrdrt\brdrs\brdrw10 \trbrdrr\brdrs\brdrw10 \trbrdrb\brdrs\brdrw10 \trpaddl70\trpaddr70\trpaddfl3\trpaddfr3
+\clbrdrl\brdrw10\brdrs\clbrdrt\brdrw10\brdrs\clbrdrr\brdrw10\brdrs\clbrdrb\brdrw10\brdrs \cellx11340\pard\intbl\cf3\highlight4\lang1033\b\f1\fs18 Sub MAIN\cf5 ()\cf3\par
+  Dim CurFile\cf5 $\cf3\par
+  Dim nFiles\par
+  ReDim FileList\cf5 $(\cf6 0\cf5 )\cf3\par
+  Dim i\par
+  \par
+  ChDir \cf7 "C:\\MyRtfFiles"\cf3\par
+  nFiles \cf5 =\cf3  \cf5 -\cf6 1\cf3\par
+\par
+  CurFile\cf5 $\cf3  \cf5 =\cf3  WordBasic\cf5 .\cf3 [Files\cf5 $\cf3 ]\cf5 (\cf7 "*.*"\cf5 )\cf3\par
+  While CurFile\cf5 $\cf3  \cf5 <>\cf3  \cf7 ""\cf3\par
+    nFiles \cf5 =\cf3  nFiles \cf5 +\cf3  \cf6 1\cf3\par
+    CurFile\cf5 $\cf3  \cf5 =\cf3  WordBasic\cf5 .\cf3 [Files\cf5 $\cf3 ]\cf5 ()\cf3\par
+  Wend\par
+\par
+  If nFiles \cf5 >\cf3  \cf5 -\cf6 1\cf3  Then\par
+    ReDim FileList\cf5 $(\cf3 nFiles\cf5 )\cf3\par
+\par
+    FileList\cf5 $(\cf6 0\cf5 )\cf3  \cf5 =\cf3  WordBasic\cf5 .\cf3 [Files\cf5 $\cf3 ]\cf5 (\cf7 "*.*"\cf5 )\cf3\par
+    For i \cf5 =\cf3  \cf6 1\cf3  To nFiles\par
+      FileList\cf5 $(\cf3 i\cf5 )\cf3  \cf5 =\cf3  WordBasic\cf5 .\cf3 [Files\cf5 $\cf3 ]\cf5 ()\cf3\par
+    Next i\par
+    WordBasic\cf5 .\cf3 SortArray FileList\cf5 $()\cf3\par
+\par
+    For i \cf5 =\cf3  \cf6 0\cf3  To nFiles\par
+      Select Case LCase\cf5 $(\cf3 Right\cf5 $(\cf3 FileList\cf5 $(\cf3 i\cf5 ),\cf3  \cf6 4\cf5 ))\cf3\par
+      Case \cf7 ".rtf"\cf5 ,\cf3  \cf7 "rtf"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 )\cf3\par
+        Selection\cf5 .\cf3 InsertFile FileName\cf5 :=\cf3 FileList\cf5 $(\cf3 i\cf5 ),\cf3  Range _\par
+          \cf5 :=\cf7 ""\cf5 ,\cf3  ConfirmConversions\cf5 :=\cf3 False\cf5 ,\cf3  Link\cf5 :=\cf3 False\cf5 ,\cf3  Attachment\cf5 :=\cf3 False\par
+        Selection\cf5 .\cf3 InsertBreak Type\cf5 :=\cf3 wdPageBreak\par
+      Case \cf7 ".png"\cf5 ,\cf3  \cf7 ".jpg"\cf5 ,\cf3  \cf7 "jpeg"\cf5 ,\cf3  \cf7 "png"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 ),\cf3  \cf7 "jpg"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 ),\cf3  \cf7 "peg"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 )\cf3\par
+        Selection\cf5 .\cf3 InlineShapes\cf5 .\cf3 AddPicture FileName\cf5 :=\cf3 FileList\cf5 $(\cf3 i\cf5 ),\cf3  _\par
+          LinkToFile\cf5 :=\cf3 False\cf5 ,\cf3  SaveWithDocument\cf5 :=\cf3 True\par
+        Selection\cf5 .\cf3 InsertBreak Type\cf5 :=\cf3 wdPageBreak\par
+      Case Else\par
+      End Select\par
+    Next i\par
+\par
+    MsgBox \cf7 "Done! - "\cf3  \cf5 +\cf3  Str\cf5 $(\cf3 nFiles \cf5 +\cf3  \cf6 1\cf5 )\cf3  \cf5 +\cf3  \cf7 " files loaded."\cf3\par
+  Else\par
+    MsgBox \cf7 "No files found."\cf3\par
+  End If\par
+End Sub\cf0\highlight0\lang2057\b0\cell\row\pard\nowidctlpar\f0\fs8\par
+\lang1031\fs20 Das Makro erwartet in unver\'e4nderter Form die Dateien wieder im Verzeichnis "\f1\fs18 C:\\MyRtfFiles\f0\fs20 ".  Im Verzeichnis d\'fcrfen sich nur die RTF-Dateien sowie JPEG- und PNG-Dateien befinden, die importiert werden sollen, sonst nichts. Die gefundenen Dateien werden durch das Makro in korrekter alphabetischer Reihenfolge eingef\'fcgt. Wer noch Winword 95 verwendet (ist zum Teil noch im Gebrauch, weil die Makro-Sprache dort einfacher ist), kann das folgende Makro verwenden, das keine prinzipiellen Unterschiede aufweist. Bei Winword 95 muss man sicherstellen, dass Importfilter f\'fcr JPEG und PNG installiert wurden, falls Grafikdateien verwendet werden:\par
+\fs8\par
+\trowd\trgaph70\trleft-70\trbrdrl\brdrs\brdrw10 \trbrdrt\brdrs\brdrw10 \trbrdrr\brdrs\brdrw10 \trbrdrb\brdrs\brdrw10 \trpaddl70\trpaddr70\trpaddfl3\trpaddfr3
+\clbrdrl\brdrw10\brdrs\clbrdrt\brdrw10\brdrs\clbrdrr\brdrw10\brdrs\clbrdrb\brdrw10\brdrs \cellx11340\pard\intbl\cf3\highlight4\lang1033\b\f1\fs18 Sub MAIN\cf5 ()\cf3\par
+  ChDir \cf7 "C:\\MyRtfFiles"\cf3\par
+  nFiles \cf5 =\cf3  \cf5 -\cf3  \cf6 1\cf3\par
+\par
+  CurFile\cf5 $\cf3  \cf5 =\cf3  Files\cf5 $(\cf7 "*.*"\cf5 )\cf3\par
+  While CurFile\cf5 $\cf3  \cf5 <>\cf3  \cf7 ""\cf3\par
+    nFiles \cf5 =\cf3  nFiles \cf5 +\cf3  \cf6 1\cf3\par
+    CurFile\cf5 $\cf3  \cf5 =\cf3  Files\cf5 $()\cf3\par
+  Wend\par
+\par
+  If nFiles \cf5 >\cf3  \cf5 -\cf3  \cf6 1\cf3  Then\par
+    Dim FileList\cf5 $(\cf3 nFiles\cf5 )\cf3\par
+\par
+    FileList\cf5 $(\cf6 0\cf5 )\cf3  \cf5 =\cf3  Files\cf5 $(\cf7 "*.*"\cf5 )\cf3\par
+    For i \cf5 =\cf3  \cf6 1\cf3  To nFiles\par
+      FileList\cf5 $(\cf3 i\cf5 )\cf3  \cf5 =\cf3  Files\cf5 $()\cf3\par
+    Next i\par
+    SortDatenfeld FileList\cf5 $()\cf3\par
+\par
+    For i \cf5 =\cf3  \cf6 0\cf3  To nFiles\par
+      Select Case LCase\cf5 $(\cf3 Right\cf5 $(\cf3 FileList\cf5 $(\cf3 i\cf5 ),\cf3  \cf6 4\cf5 ))\cf3\par
+      Case \cf7 ".rtf"\cf5 ,\cf3  \cf7 "rtf"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 )\cf3\par
+        Einf\'fcgenDatei \cf5 .\cf3 Name \cf5 =\cf3  FileList\cf5 $(\cf3 i\cf5 ),\cf3  \cf5 .\cf3 Bereich \cf5 =\cf3  \cf7 ""\cf5 ,\cf3  \cf5 .\cf3 UmwandlungBest\'e4tigen \cf5 =\cf3  \cf6 0\cf5 ,\cf3  \cf5 .\cf3 Verkn\'fcpfung \cf5 =\cf3  \cf6 0\cf3\par
+        Einf\'fcgenManuellerWechsel \cf5 .\cf3 Art \cf5 =\cf3  \cf6 0\cf3\par
+      Case \cf7 ".png"\cf5 ,\cf3  \cf7 ".jpg"\cf5 ,\cf3  \cf7 "jpeg"\cf5 ,\cf3  \cf7 "png"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 ),\cf3  \cf7 "jpg"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 ),\cf3  \cf7 "peg"\cf3  \cf5 +\cf3  Chr\cf5 $(\cf6 34\cf5 )\cf3\par
+        Einf\'fcgenGrafik \cf5 .\cf3 Name \cf5 =\cf3  FileList\cf5 $(\cf3 i\cf5 ),\cf3  \cf5 .\cf3 DateiVerkn\'fcpfen \cf5 =\cf3  \cf7 "0"\cf3\par
+        Einf\'fcgenManuellerWechsel \cf5 .\cf3 Art \cf5 =\cf3  \cf6 0\cf3\par
+      Case Else\par
+      End Select\par
+    Next i\par
+\par
+    MsgBox \cf7 "Done! - "\cf3  \cf5 +\cf3  Str\cf5 $(\cf3 nFiles \cf5 +\cf3  \cf6 1\cf5 )\cf3  \cf5 +\cf3  \cf7 " files loaded."\cf3\par
+  Else\par
+    MsgBox \cf7 "No files found."\cf3\par
+  End If\par
+End Sub\cf0\highlight0\lang2057\b0\cell\row\pard\nowidctlpar\lang1031\f0\fs8\par
+\fs20 LibreOffice bietet leider keinen Weg, mehrere Dateien auf einmal einzuf\'fcgen. Das Anh\'e4ngen einzelner Dateien Schritt f\'fcr Schritt geht aber ganz \'e4hnlich wie bei MS Winword.\par
+\f2\fs24\par
+\pard\cf2\b\f3\fs28 JPEG-Dateien verkleinern\b0\fs20\par
+\cf0\par
+\b Tip 1:\b0  Man kann JPEG-Dateien bei subjektiv gleicher Qualit\'e4t weiter verkleinern, wenn man das winzige Uralt-Tool "JPEG Optimizer 3.10" von Xat verwendet. Das Programm hie\'df sp\'e4ter "Image Optimizer" ohne (f\'fcr mich) sinnvolle Erweiterungen zu haben, bis der Hersteller leider aus dem Netz verschwand. Das Programm ist noch an vielen Stellen im Netz zu finden. Der Trick an diesem Tool: Man kann nicht nur die Bildqualit\'e4t live beim Einstellen der Kompressionsst\'e4rke pr\'fcfen, sondern man kann dar\'fcber hinaus auch verschiedene Bildbereiche unterschiedlich stark komprimieren. Was stark die Aufmerksamkeit auf sich zieht (z.B. Augen) und/oder wichtig ist, komprimiert man wenig, unwichtige und/oder Hintergrundbereiche komprimiert man st\'e4rker. Auf diese Weise erreicht man regelm\'e4\'dfig eine nur halb so gro\'dfe Datei.\par
+Auch das bekannte Grafikprogramm GIMP hat eine Live-Vorschau f\'fcr die JPEG-Kompression, aber leider keine verschieden komprimierbaren Bildsegmente.\par
+\fs8\par
+\b\fs20 Tip 2:\b0  JPEG- und PNG-Bilder sind bereits komprimiert und werden etwas schneller geladen, wenn sie im Buch (der ZIP-Datei des Buchs) nicht noch einmal ZIP-komprimiert abgelegt werden (d.h. Kompressionsstufe 0). Das "doppelt gemoppelte" frisst nur unn\'f6tig Zeit, bringt aber fast gar nichts an zus\'e4tzlicher Kompression.\par
+\pard\nowidctlpar\f2\fs24\par
+\pard\cf2\b\f3\fs28 RTF-Dateien verkleinern\b0\fs20\par
+\cf0\par
+Zum Anzeigen der RTF-Dateien greift \i RTF book viewer\i0  auf die Windows-Systembibliothek \f1\fs18 msftedit.dll\f3\fs20  zur\'fcck. Soll ein eBook sp\'e4ter mit \i RTF book viewer\i0  gelesen werden, ist es daher sinnlos, wenn RTF-Dateien Informationen enth\'e4lt, die gar nicht von \f1\fs18 msftedit.dll\f3\fs20  dargestellt werden k\'f6nnen. Gr\'f6\'dfere Textprozessoren wie Winword legen viele solche Informationen, und zudem unsichtbare Meta-Informationen, in den erzeugten RTF-Dateien ab. Da das Windows-Tool Wordpad ebenfalls \f1\fs18 msftedit.dll\f3\fs20  benutzt, kann man eine RTF-Datei deshalb einfach einmal in Wordpad laden und speichern. Dann ist (fast) nur noch in der RTF-Datei, was auch vom \i RTF book viewer\i0  verarbeitet werden kann, das Laden geht etwas schneller und die RTF-Datei ist deutlich kleiner.\par
+\fs8\par
+\fs20 Tip f\'fcr Projekte mit extrem gro\'dfe Textmengen: Die einfachste RTF-Datei kann intern nach dem folgenden Schema aufgebaut sein: \f1\fs18\{\\rtf1 Mein Text\}\f3\fs20 . Solche Dateien lassen sich ggf. einfach per Skript erzeugen, wenn es darum geht, wenige wichtige Formatierungen bei gro\'dfen Mengen Text einzusetzen und dabei unn\'f6tigen "toten Code" zu vermeiden, der Speicherplatz ohne echten Gewinn frisst.\par
+Harte Umbr\'fcche werden im RTF-Code mit \f1\\par \f3  erzeugt, wobei dem \f1\\par \f0 ein Leerzeichen oder ein Zeilenumbruch oder ein weiterer RTF-Code als Abschluss folgen muss\f3 . Das sieht dann so aus: \f1\fs18\{\\rtf1 Mein Text\\par Eine zweite Zeile.\\par Eine dritte Zeile\}\f3\fs20 . Echte Zeilenbr\'fcche werden in RTF-Dateien nicht als Formatierung betrachtet, d\'fcrfen aber (z.B. zur besseren \'dcbersichtlichkeit) vorkommen. Ein letztes Beispiel: \f1\fs18\{\\rtf1 Mein Text\\par Eine zweite Zeile mit \\b fettem\\b0  und \\i kursivem\\i0  Text.\\par Eine dritte Zeile\}\f3\fs20 .\par
+Der \i RtfViewer\i0  setzt bei RTF-Dateien ohne vorgegebene Formatierung als Voreinstellung den ANSI-Zeichensatz mit der Schriftart Arial 10 Pixel.\par
+\pard\nowidctlpar\f2\fs24\par
+\pard\cf2\b\f3\fs28 Sp\'e4teres Einf\'fcgen eines Kapitels mitten in ein eBook\b0\fs20\par
+\cf0\par
+Das (sp\'e4tere) Einf\'fcgen eines neuen Kapitels an beliebiger Stelle erfordert die \'c4nderung der Ordnungszahlen aller nachfolgenden Dateinamen. Das macht man em Besten nicht m\'fchsam "zu Fu\'df". Der bekannte Total Commander (www.ghisler.com) kann das zum Beispiel viel bequemer \'fcber das Men\'fc "Dateien"\u8594?"Datei-Umbenenn-Tool". Apropos Total Commander, dieser hat eine weitere n\'fctzliche Funktion: \'dcber den Men\'fcpunkt "Markieren"\u8594?"Kopiere markierte Namen in Zwischenablage" kann man dort mit wenigen Mausklicks exakt die Dateiliste erzeugen, die man f\'fcr die Datei \f1\fs18 #index.txt\f3\fs20  ben\'f6tigt.\par
+\pard\nowidctlpar\f2\fs24\par
+}
+ 

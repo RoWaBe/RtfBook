@@ -1,0 +1,186 @@
+{\rtf1\ansi\ansicpg1252\deff0{\fonttbl{\f0\fswiss\fcharset0 Arial;}{\f1\fmodern\fprq1\fcharset0 Courier New;}{\f2\fswiss\fprq2\fcharset0 Arial;}}
+{\colortbl ;\red255\green0\blue0;\red0\green0\blue255;\red128\green128\blue128;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\cf1\lang1031\b\f0\fs48 RTF books selber machen\cf0\b0\fs20\par
+\b ...und das verwendete Dateiformat\b0\par
+\par
+\par
+\cf2\b\fs28 Das Wichtigste:\b0\fs20\par
+\cf0\par
+RTF-Books (*.rbk) sind eBooks, bei dem ein oder viele RTF-Dateien zusammen mit Bildern in eine ZIP-Datei verpackt werden. Das ist schon das Wesentliche, nur dass eine bestimmte Struktur beachtet wird und die ZIP-Datei die Endung *.rbk bekommt. Benennt man sie in *.zip um, l\'e4sst sie sich mit einem beliebigen UnZip-Programm (siehe unten) sowie im normalen Windows-Explorer entpacken. Da sowohl RTF als auch ZIP gut unterst\'fctzte dokumentierte Formate sind, sind solche eBooks mit jedem System kompatibel und zukunftssicher.\par
+Ganz nebenbei ergab sich der Vorteil, dass der speziell geschaffene Betrachter f\'fcr MS Windows (RTF book viewer) drastisch kleiner und schneller als viele vergleichbare Betrachter ist.\par
+\fs8\par
+\fs20 Ansonsten \'e4hnelt die Grundidee dem ComicBook-Format *.CBZ (*.CBR usw., siehe hier \f1\fs18 http://de.wikipedia.org/wiki/Comic-Book-Format\f0\fs20 ).\par
+\fs8\par
+\fs20 Das Format entstand urspr\'fcnglich f\'fcr wissenschaftliche Text- und Bildsammlungen. Es darf (wie das Betrachterprogramm \i RTF book viewer\i0 ) ohne Einschr\'e4nkungen frei verwendet werden.\par
+\par
+\cf2\b\fs28 Ein eBook in drei Schritten:\b0\fs20\par
+\cf0\par
+Das RTF-Buch kann in 3 Schritten in wenigen Minuten erstellt werden. Ben\'f6tigt wird:\par
+\fs8\par
+\pard\fi-284\li284\tx284\b\fs20 1.\b0\tab Ein einfaches Textverarbeitungsprogramm, das das RTF-Format beherrscht. Das kostenlose Windows-Wordpad gen\'fcgt v\'f6llig.\par
+\b 2.\b0\tab Ein ZIP-Packer wie z.B. WinZip, WinRar, 7zip oder der Total Commander.\par
+\b 3.\b0\tab Bei Bedarf: Ein Grafikprogramm, das JPEG- und/oder PNG-Dateien erzeugen kann.\par
+\pard\fs8\par
+\fs20 Die drei Schritte zur Herstellung des RTF-Buchs:\par
+\fs8\par
+\pard\fi-284\li284\tx284\b\fs20 1.\b0\tab Ein oder mehrere Kapitel schreiben und als je eine RTF-Datei abspeichern.\par
+\b 2.\b0\tab Alle RTF-Textdateien in eine gemeinsame ZIP-Datei verpacken.\par
+\b 3.\b0\tab Die erzeugte Archivdatei von *.zip in *.rbk umbenennen.\par
+\pard\fs8\par
+\fs20 Fertig. Im RtfBook-Viewer wird jede der RTF-Dateien als ein eigenes Kapitel im Inhaltsverzeichnis angezeigt. Kopiert mal also 20 RTF-Dateien in eine RtfBook-Datei, wird das Inhaltsverzeichnis 20 Eintr\'e4ge enthalten.\par
+Zus\'e4tzlich zu RTF-Dateien sind Bilddateien im JPEG- und PNG-Format erlaubt.\par
+\par
+\cf2\b\fs28 Verfeinerung: Reihenfolge der Kapitel bestimmen\b0\fs20\par
+\cf0\par
+Die Kapitel werden im Inhaltsverzeichnis alphabetisch sortiert. Um gezielt eine bestimmte Reihenfolge herzustellen, setzt man dem Namen der RTF-Dateien eine Ordnungszahl voran, zB.:\par
+\fs8\par
+\pard\li284\f1\fs20 001 Einf\'fchrung.rtf\par
+003 Das zweite Kapitel.rtf\par
+002 Das erste Kapitel.rtf\par
+004 Das letzte Kapitel.rtf\f0\par
+\pard\fs8\par
+\fs20 Die Anzahl der Ziffern pro Ordnungszahl ist egal, bei bis zu 99 Eintr\'e4gen im Inhaltsverzeichnis sollte man sinnvollerweise eine zweistellige Ordnungszahl verwenden. Es d\'fcrfen Ordnungszahlen ausgelassen werden; nur die alphabetische Reihenfolge ist wichtig. F\'fchrende Nullen sind bei den niedrigen Ordnungszahlen Pflicht, weil sonst die alphabetische Sortierung fehlgeht. Die vorangesetzten Ordnungszahlen einschlie\'dflich dem nachfolgenden Leerzeichen werden im Inhaltsverzeichnis ausgeblendet, sie bleiben f\'fcr den Leser des eBooks also unsichtbar. Die Dateiendung wird ebenfalls weggelassen. Das Inhaltsverzeichnis wird in unserem Beispiel also wie folgt aussehen:\par
+\fs8\par
+\fs20\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\par
+\pard\li284 Einf\'fchrung\par
+Das erste Kapitel\par
+Das zweite Kapitel\par
+Das letzte Kapitel\par
+\pard\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\par
+\par
+\cf2\b\fs28 Zweite Verfeinerung: Kapitel-Hierarchie erzeugen\b0\fs20\par
+\cf0\par
+Zus\'e4tzlich zur Reihenfolge kann eine Hierarchie der Kapitel im Inhaltsverzeichnis erzeugt werden. Dazu f\'fcgt man der Ordnungszahl einen Bindestrich und eine einstellige Ziffer an, welche die Hierarchieebene angibt. Hier ein Beispiel.\par
+\fs8\par
+\pard\li284\f1\fs20 001 Einf\'fchrung.rtf\par
+002 Das erste Kapitel.rtf\par
+003 Das zweite Kapitel.rtf\par
+004-1 Unterkapitel auf Ebene 1.rtf\par
+005-1 Unterkapitel auf Ebene 1.rtf\par
+006-2 Unterkapitel auf Ebene 2.rtf\par
+007-2 Unterkapitel auf Ebene 2.rtf\par
+008 Das letzte Kapitel.rtf\f0\par
+\pard\fs8\par
+\fs20 Das Weglassen der Hierarchieangabe ist gleichbedeutend mit Ebene 0 dh. \f1 001 Einf\'fchrung.rtf\f0  enspricht \f1 001-0 Einf\'fchrung.rtf\f0  . Die vorangegangene Liste erzeugt folgende Hierarchie:\par
+\fs8\par
+\fs20\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\par
+\pard\li284 Einf\'fchrung\par
+Das erste Kapitel\par
+Das zweite Kapitel\par
+\pard\li426 Unterkapitel auf Ebene 1\par
+Unterkapitel auf Ebene 1\par
+\pard\li568 Unterkapitel auf Ebene 2\par
+Unterkapitel auf Ebene 2\par
+\pard\li284 Das letzte Kapitel\par
+\pard\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\par
+\fs8\par
+\fs20 Ein Kapitel kann auch auf mehrere Dateien verteilt werden. Das kann sinnvoll sein, um zu gro\'dfe Dateien zu vermeiden oder wenn im Kapitel Bilddateien eingef\'fcgt werden (dazu weiter unten). In diesem Fall erh\'f6ht man im Dateinamen einfach die Ordnungszahl, beh\'e4lt die Hierarchie-Ebene bei, l\'e4sst aber den Kapitelnamen im Dateinamen weg. Das k\'f6nnte zum Beispiel so aussehen:\par
+\fs8\par
+\pard\li284\f1\fs20 004-1 Titel des Unterkapitels.rtf\par
+005-1.rtf\par
+006-1.rtf\par
+\pard\f0\fs8\par
+\fs20 Der \i RTF book viewer\i0  wird die Fortsetzungen des aktuellen Kapitels im Inhaltsverzeichnis mit "\'85" anzeigen.\par
+\par
+\cf2\b\fs28 Dritte Verfeinerung: Verwendung einer Indexdatei \f1 #index.txt\b0\f0\fs20\par
+\cf0\par
+Optional kann eine Indexdatei \b\f1 #index.txt\b0\f0  verwendet werden. Diese Datei listet in je einer Textzeile alle Kapitel exakt im gleichen Format wie oben beschrieben, w\'e4hrend die echten Dateien in diesem Fall als Dateinamen nur die reine Ordnungszahl bekommen. Das ZIP-Archiv des eBooks enth\'e4lt hier also nur die Dateinamen \f1 #index.txt\f0 , \f1 0001\f0 , \f1 0002\f0 , \f1 0003\f0 , \f1 0004\f0  usw.\par
+\fs8\par
+\fs20 Normalerweise ist dieser Umweg nicht n\'f6tig, aber es gibt Ausnahmen: So sind bestimmte Zeichen in Dateinamen unzul\'e4ssig, und zwar < > ? " : | \\ / * (in speziellen F\'e4llen auch &), und es gibt reservierte Dateinamen wie COM1, COM2 ... LPT1 ... CON, PRN, AUX, NUL, die f\'fcr Ger\'e4te verwendet werden. Um Schwieigkeiten mit solchen F\'e4llen zu umgehen, kann die Liste der Kapitelnamen in eine Indexdatei \b\f1 #index.txt\b0\f0  gesetzt werden.\par
+Die Verwendung einer Indexdatei kann aber auch bei verschl\'fcsselten RtfBook-Dateien sinnvoll sein, weil dort normale Dateinamen unverschl\'fcsselt bleiben und Dateinamen durchaus R\'fcckschl\'fcsse auf den Inhalt des Buchs zulassen.\par
+Ein dritter Vorteil ist, dass man in der Datei \b\f1 #index.txt\b0\f0  nachtr\'e4glich mitten in der Liste neue Kapitel einf\'fcgen kann, ohne dass die nachfolgenden Kapitel dann neue Ordnungszahlen bekommen m\'fcssen. Bei der Verwendung einer \b\f1 #index.txt\b0\f0  gibt die Ordnungszahl \b\i nicht\b0\i0  mehr die Kapitel-Reihenfolge vor, sondern dient nur noch als Dateikennung. Die Reihenfolge der Kapitel wird nur durch die Liste in der Datei \b\f1 #index.txt\b0\f0  bestimmt.\par
+Daraus ergibt sich der vierte Vorteil, dass ein und dasselbe Kapitel mehrfach in der Indexdatei aufgelistet sein kann, zum Beispiel einmal vorne im Inhaltsverzeichnis und ein zweitesmal hinten in einem Schlagwortregister, Autorenregister usw.\par
+\fs8\par
+\fs20 Die Indexdatei \b\f1 #index.txt\b0\f0  ist eine einfache Textdatei. Es wird dringend empfohlen, diese im UTF-8-Format mit einer BOM am Dateianfang (ByteOrderMark, 3 Bytes und zwar \'ef\'bb\'bf) abzuspeichern. - Mit dem normalen Windows-Texteditor \f1 notepad.exe\f0  muss man dazu bei "Speichern unter..." nur als Codierung "UTF-8" ausw\'e4hlen, das ist alles. Durch das UTF-8-Format ist weltweit eine eindeutige Kodierung der Sonderzeichen m\'f6glich, sowie eine problemlose Verwendung fremder Schriftzeichen. Gew\'f6hnliche Textdateien (Verzicht auf UTF-8) sind trotzdem erlaubt.\par
+Die Indexdatei \i muss\i0  zwingend den Dateinamen \b\f1 #index.txt\b0\f0  haben und hat exakt den Aufbau. wie die oben schon als Beispiel gezeigten Dateinamen, nur dass die Dateiliste diesmal in der Indexdatei \b\f1 #index.txt\b0\f0  steht, das hei\'dft in unserem Beispiel:\par
+\fs8\par
+\pard\li284\f1\fs20 001 Einf\'fchrung.rtf\par
+002 Das erste Kapitel.rtf\par
+003 Das zweite Kapitel.rtf\par
+004-1 Unterkapitel auf Ebene 1.rtf\par
+005-1 Unterkapitel auf Ebene 1.rtf\par
+006-2 Unterkapitel auf Ebene 2.rtf\par
+007-2 Unterkapitel auf Ebene 2.rtf\par
+008 Das letzte Kapitel.rtf\f0\par
+\pard\fs8\par
+\fs20 Die echten Dateinamen haben in diesem Fall die Dateinamen...\par
+\fs8\par
+\pard\li284\f1\fs20 001\par
+002\par
+003\par
+004\par
+005\par
+006\par
+007\par
+008\par
+\pard\f0\fs8\par
+\fs20 ...also eine reine Ziffer mit f\'fchrenden Nullen ohne (!) Hierarchieangabe und ohne (!) Dateisuffix. Der RtfBook-Reader wird in jeder Zeile der Dateiliste von \f1 #index.txt\f0  die linken Ziffern bis zum ersten Leerzeichen oder Bindestrich auslesen und nach einer Datei mit diesem Dateinamen suchen. Ansonsten gilt alles oben Beschriebene und hier passiert wirklich nicht mehr, als eine Verlagerung aller Dateinamen in die Indexdatei \b\f1 #index.txt\b0\f0 , wobei die Ordnungszahl dann auch der echte Dateiname ist.\par
+Tip: Ein eBook l\'e4dt etwas schneller, wenn sich die Datei \b\f1 #index.txt\b0\f0  am Anfang der eBook-ZIP-Datei befindet\par
+\par
+\cf2\b\fs28 Zul\'e4ssige Dateitypen, Bilddateien und Attachements\b0\fs20\par
+\cf0\par
+Neben \cf1\b RTF-Dateien\cf0\b0  sind \cf1\b Bilddateien\cf0\b0  im PNG- und JPEG-Format und \cf1\b Bin\'e4r-Attachements\cf0\b0  zul\'e4ssig.\par
+Bei den Bilddateien sollte man auf vern\'fcnftige Datei- und Bildgr\'f6\'dfen achten, die keine h\'f6here Qualit\'e4t haben, als sie auf dem Bildschirm tats\'e4chlich sinnvoll ist. Braucht man aber eine hochqualitative Bilddatei, etwa als Autor, der sein Material an einen Lektor/Redakteur weitergibt, empfiehlt es sich, eine Bildversion in pragmatischer Qualit\'e4t f\'fcr die Bildschirmanzeige einzuf\'fcgen und eine zweite Bildversion als Bin\'e4r-Attachement, indem man dem Dateinamen einen weiteren Suffix wie zB. \f1 *.bin\f0  anh\'e4ngt, also zB. beim anzuzeigenden Bild \f1 MeinBild.jpg\f0  zus\'e4tzlich die Datei \f1 MeinBild_HiRes.png.bin\f0 . Bin\'e4r-Attachements sind beliebige Dateien, die nicht RTF, JPEG oder PNG sind und deren einzige Funktion es ist, \'fcber "Speichern als..." extrahiert werden zu k\'f6nnen. Eine gesonderte \'dcberschrift ist bei Bin\'e4r-Attachements nicht vorgesehen. Sollte ein Kommentar n\'f6tig sein, muss dieser im Kapitel davor oder dahinter eingef\'fcgt werden.\par
+\par
+\cf2\b\fs28 Eingebettete Bilder\b0\fs20\par
+\cf0\par
+Mitten im Text eingebettete Bilder kosten viel Rechenzeit und Arbeitsspeicher. Deshalb sollte man sie nur in Ausnahmef\'e4llen verwenden und dann die unten folgenden Hinweise beachten.\par
+Im Gegensatz zu Rasterbildern k\'f6nnen EMF-Vektorgrafiken in der Regel problemlos eingebettet werden. Bei Rastergrafiken sind nur unkomprimierte (!) Bitmaps auf \'e4lteren Windows-Systemen zuverl\'e4ssig darstellbar. Eingebettete (!) komprimierte Rastergrafiken als JPEG oder PNG k\'f6nnen vom \i RTF book viewer\i0  unter \'e4lteren Windows-Versionen (Windows XP und \'e4lter) eventuell nicht dargestellt werden. Um Missverst\'e4ndnisse zu vermeiden: Das gilt nicht f\'fcr JPEG- und PNG-\i Dateien\i0  - diese werden vom \i RTF book viewer\i0  auf jedem System unterst\'fctzt.\par
+Beim Einbetten sollte \b\i sehr\b0\i0  darauf geachtet werden, nicht zu gro\'dfe Bilder einzubetten. Das betrifft nicht nur H\'f6he mal Breite, sondern auch die Farbtiefe. Zum Beispiel sollte man keine Vollfarb-Bitmap (24 Bit pro Pixel) erstellen, wenn eine mit 16 Farben (4 Bit pro Pixel) gen\'fcgt. Das Einf\'fcgen sollte zudem nicht \'fcber die Zwischenablage erfolgen, wo die Farbtiefe eventuell wieder ver\'e4ndert wird, sondern (w\'e4hrend des Einbettens) als Datei. Das macht man bei Winword \'fcber das Men\'fc "Einf\'fcgen"\u8594?"Grafik"\u8594?"Grafik aus Datei..." bzw. bei Wordpad \'fcber das Men\'fc "Einf\'fcgen"\u8594?"Objekt..."\u8594?"Aus Datei erstellen..." bzw. bei LibreOffice sWriter \'fcber das Men\'fc "Einf\'fcgen"\u8594?"Bild". Man sollte auch nicht zu viele Bilder in einem Kapitel (einer RTF-Datei) einbetten.\par
+Wie auch immer: Am \'f6konomischsten ist es, Pixel-Bilder als separate PNG-, JPEG-Dateien abzulegen. Diese k\'f6nnen vom \i RTF book viewer\i0  immer dargestellt werden, notfalls (bei \'e4lteren Systemen), nachdem man GDI+ nachinstalliert hat oder sich eine neuere Version der System-Bibliothek \f1 msftedit.dll\f0  besorgt hat.\par
+Noch ein Tip f\'fcr EMF-Vektorgrafiken: Soll die EMF-Grafik auch als Bin\'e4r-Attachement verf\'fcgbar sein, empfehle ich zum Erzeugen der EMF-Grafikdatei via Zwischenablage mein eigenes Tool \f1 MetaView.exe\f0 . Das Tool ist nur 20KB gro\'df und ist erzeugt EMF-Dateien mit korrektem Seitenverh\'e4ltnis, was leider bei vielen anderen Tools nicht der Normalfall ist.\par
+\par
+\cf2\b\fs28 Formatierungs-Tips\b0\fs20\par
+\cf0\par
+Als normaler Text hat sich Arial 10 Pixel linksb\'fcndig oder Blocksatz am besten bew\'e4hrt. Verzierte Schriften, zB. Serifen-Schriften wie Times New Roman, sind auf dem Bildschirm meist ung\'fcnstiger. F\'fcr Autoren gilt sowieso: Redakteure und Lektoren hassen alles, was \'fcber sechs oder sieben Grundformatierungen hinausgeht, und Setzer werden sowieso wahnsinnig davon. ;-)\par
+\fs8\par
+\fs20 Da die RTF-Darstellung des \i RTF book viewers\i0  auf dieselbe Systembibliothek wie Wordpad zur\'fcckgreift (\f1 msftedit.dll\f0 ), lohnt es sich, RTF-Dateien, die in anderen Programmen entstanden sind (etwa Winword), einmal in Worpad zu laden und zu speichern, bevor sie ins eBook eingef\'fcgt werden. So erkennt man, welche Formatierungen ggf. gar nicht unterst\'fctzt werden. Die Dateien werden dadurch aber auch schlanker und im \i RTF book viewer\i0  schneller ladbar. Noch ein Vorteil der "Filterung" per Wordpad ist, dass eventuell vorhandene  unerw\'fcnschte Meta-Informationen aus den RTF-Dateien gel\'f6scht werden. Grafiken sollten unbedingt als separate PNG- oder JPEG-Bilddateien ins eBook eingef\'fcgt werden, denn eingebettete Bilder d\'fcrfen nur unkomprimiert sein und haben einen drastischen (!) Platzbedarf. \par
+\par
+\cf2\b\fs28 Verschl\'fcsselte eBooks\b0\fs20\par
+\cf0\par
+Die M\'f6glichkeit der Verschl\'fcsselung bot sich an, weil das ohnehin Bestandteil des ZIP-Formats ist. Zudem war das RTF-Buch-Format aber auch f\'fcr ein Outliner-Programm gedacht. Es sind harte Verschl\'fcsselungsmethoden wie AES-256 m\'f6glich, wobei zu beachten ist, dass bei ZIP-Dateien nur der Dateiinhalt verschl\'fcsselt wird, nicht aber die Dateinamen.\par
+Bei einfachen eBooks mag die Verschl\'fcsselung als Kindersicherung, bei Transport auf USB-Stick o.\'e4. sinnvoll sein.\par
+\par
+\cf2\b\fs28 Metadaten in der Datei \f1 #meta.txt\b0\f0\fs20\par
+\cf0\par
+Bei Bedarf k\'f6nnen (keine Pflicht) Metadaten zum eBook bereitgestellt werden, die Angaben enthalten, wie Buchtitel, Autor, Erscheinungsdatum usw. Diese Daten werden in der Datei \f1 #meta.txt\f0  im Textformat gespeichert. Wie bei Indexdatei \f1 #index.txt\f0  (siehe oben) gilt bei Verwendung von Sonderzeichen, dass dringend das Speichern im UTF-8-Format empfohlen wird.\par
+Im einfachsten Fall enth\'e4lt die Metadatei eine einfache Textbeschreibung ohne irgend eine Struktur. Das ist besser als nichts!\par
+Wenn die Meta-Informationen f\'fcr extrene Indizierungs- und Suchprogramme auslesbar sein sollen, dann sollte die Datei \f1 #meta.txt\f0  die erste Datei im ZIP-Archiv der *.rbk-Datei sein, und sie sollte unkomprimiert und unverschl\'fcsselt sein. Welche Metadaten man anbietet, ist jedem freigestellt, aber zumindest Titel, Autor, Datum der Erstver\'f6ffentlichung und Sprache sind empfehlenswert.\par
+\fs8\par
+\fs20 Die Meta-Datei kann aber auch aus \b\i vereinfachte\b0\i0  (!) DublinCore-Elementen bestehen, wie im folgenden Beispiel gezeigt:\par
+\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\par
+\f1\fs18 title: \'dcber die spezielle und die allgemeine Relativit\'e4tstheorie\par
+subtitle:\par
+relation: Albert-Einstein-Gesamtausgabe\par
+creator: Einstein, Albert\par
+translator: Berg, Carl\par
+contributor: \par
+subject: science\par
+subject: physics\par
+language: de\par
+publisher: Springer Berlin Heidelberg\par
+source: Gutenberg Project http://.....\par
+publication: 1921\par
+creation: 1920\par
+modification: 2017-01-31\par
+rights: Copyright expired\par
+format: RTF book\par
+ISBN: 978-3-976-54321-0\par
+DOI: 10.1007/978-3-976-54321-0\par
+Open Library: OL1234567890\par
+description: This is... ... ... ...\par
+\f0\fs20\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\par
+Jede Einzelinformation besteht also aus Code-Doppelpunkt-Inhalt. Der Code (z.B. "title") darf maximal 32 Zeichen lang sein. Leerzeichen vorm oder nach dem trennenden Doppelpunkt werden ignoriert. Der nachfolgende Inhalt hat keine Beschr\'e4nkung au\'dfer das Zeilenendezeichen (dazu siehe unten). Die Einzelinformation wird mit einem Zeilenende abgeschlossen. Nicht ben\'f6tigte Codes m\'fcssen nicht aufgef\'fchrt werden, k\'f6nnen also ganz weggelassen werden. Ein Code darf beliebig oft vorkommen, zum Beispiel, um mehrere Stichw\'f6rter ("subject") angeben zu k\'f6nnen. Es d\'fcrfen selbstdefinierte DublinCore-Codes verwendet werden, wenn die oben aufgef\'fchrten f\'fcr den erw\'fcnschten Zweck nicht ausreichen; es m\'fcssen aber einfache Codes sein; eine Verschachtelung ist (hier) nicht erlaubt. Mehrzeilige Eintr\'e4ge (zB. bei der Beschreibung "description") sind durch mehrfach aufeinanderfolgende Verwendung des gleichen Elements m\'f6glich.\par
+\par
+\cf2\b\fs28 Metainformationen f\'fcr die einzelnen Kapitel\b0\fs20\par
+\cf0\par
+Der \i\f2 RTF book viewer\i0\f0  unterst\'fctzt als Sonderfunktion die Suche nach \cf3\b dunkelgrauem\cf0\b0  Text (Winword: "Grau 50%, Wordpad: "grau", RGB=128,128,128=0x00808080). Diese Funktion ist nat\'fcrlich universell nutzbar, wurde aber speziell f\'fcr Metainformationen innerhalb der Kapitel geschaffen. Zum Beispiel kann man ganz oben im Kapitel den Text "\cf3 Stichworte: B\'e4ume, Pflanzen, Flora, Australien\cf0 " einf\'fcgen und diesen dunkelgrau formatieren. Will man sp\'e4ter nur innerhalb der Metainformationen, aber nicht im anderen Text suchen, sucht man einfach mit der Suchoption "Suche ... dunkelgrau". Das funktioniert nat\'fcrlich nur so lange, wie man dunkelgraue Textfarbe nicht f\'fcr andere Zwecke einsetzt. Diese einache und bequeme M\'f6glichkeit hat sich aber sehr bew\'e4hrt, zumal sie bei Bedarf auch an beliebiger Stelle mitten im Text einsetzbar ist und die Tags in einem geeigneten Textverarbeitungsprogramm (z.B. Winword) bei Bedarf in einem einzigen Arbeitsschritt entfernbar sind.\f2\par
+\par
+\cf2\b\f0\fs28 Ganz zum Schluss\b0\fs20\par
+\cf0\par
+Das RtfBook-Format entstand im Rahmen eines Archivierungsprojekts, weil es f\'fcr die vorhandenen Dateiformate nur tr\'e4ge und umst\'e4ndlich zu bedienende Software gab und/oder das Format selbst W\'fcnsche \'fcbrig lie\'df. Es wurde etwas Bequemes und Komfortables gebraucht, bei dem Texte und Bilder bei Bedarf auch auf einfache Weise wieder entnehmbar sein sollten. Geplant war zudem, f\'fcr das Format neben dem Viewer sp\'e4ter ein echtes Outliner-Programm zu programmieren, der in etwa wie die bekannten Programme KeyNote, WinGuide und TreePad aufgebaut sein sollte, aber mit einem offenen und einfach handhabbaren Dateiformat, das quer \'fcber alle Systeme und auf unabsehbare Zeit ohne Weiteres lesbar ist. - Und RTF-Dateien in einer ZIP-Datei sind wohl zweifelsfrei eine kompatible Sache, selbst \i sehr\i0  langfristig gesehen ;-)\par
+F\'fcr die Freigabe des \i RTF book viewers\i0  au\'dferhalb des Archivierungsprojekts wurde das Programm noch einmal stark \'fcberarbeitet, weshalb wir hier mit Dateiversion 1.0.0.0 starten.\par
+\par
+\par
+}
+ 
